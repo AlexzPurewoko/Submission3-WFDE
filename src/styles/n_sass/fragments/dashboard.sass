@@ -1,0 +1,76 @@
+@use "../base/utils"
+
+dashboard-fragment
+    .main 
+        .titles
+            display: grid
+            grid-template-columns: 345px auto 345px
+            vertical-align: middle
+            margin-bottom: 20px
+
+        .titles > .title-search
+            font-family: utils.$quicksand_font
+            text-align: center
+
+            & + spacer-line > div
+                margin: 10px auto 10px
+            
+        .titles > search-box > .search-container
+            width: 300px
+        
+        .loading-view 
+            display: none
+            display: grid
+            grid-gap: 20px
+            justify-content: center
+
+        .fixed-top-titles
+            padding-top: 10px
+            padding-bottom: 10px
+            position: fixed
+            top: 0
+            left: 0
+            right: 0
+            left: 0
+            width: 100%
+            z-index: 20
+            background-color: white
+
+@media screen and(max-width: 700px)
+    dashboard-fragment .main > .titles 
+        grid-template-columns: auto
+
+@media screen and(min-width: 701px)
+    dashboard-fragment 
+        .main > .titles
+            width: 701px
+            margin-left: auto
+            margin-right: auto
+            .title-search
+                h1
+                    vertical-align: middle
+                    text-align: center
+                    margin-top: 15px
+                    margin-bottom: auto
+
+            search-box > .search-container
+                margin-top: 8px
+                margin-bottom: auto
+
+@media screen and(max-width: 600px)
+    dashboard-fragment .loading-view
+        grid-template-columns: auto
+
+@media screen and(min-width: 601px)
+    dashboard-fragment .loading-view
+        grid-template-columns: 520px
+
+@media screen and(min-width: 695px)
+    dashboard-fragment .loading-view
+        grid-template-columns: 310px 310px
+        
+@media screen and(min-width: 1005px)
+    dashboard-fragment .loading-view
+        grid-template-columns: 310px 310px 310px
+
+

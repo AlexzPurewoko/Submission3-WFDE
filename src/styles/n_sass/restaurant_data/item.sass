@@ -1,0 +1,88 @@
+@use "../base/utils"
+.card-item-container
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2 )
+    min-width: 310px
+    min-height: 300px
+    position: relative
+    display: inline-block
+    border-radius: 5px
+
+.card-item-container:focus 
+    outline-color: utils.$base_color
+
+.card-item-container > img
+    border-radius: 5px 5px 5px 5px
+    width: 100%
+    object-fit: cover
+
+.card-item-container:after
+    border-radius: 5px 5px 5px 5px
+    position: absolute
+    height: 100%
+    width: 100%
+    background-color: rgba(0, 0, 0, .69)
+    top: 0
+    left: 0
+    display: block
+    content: ""
+
+.item-header-text
+    position: absolute
+    z-index: 10
+    top: 0
+    padding: 10px
+    width: 100%
+    height: 100%
+
+.item-header-text:focus 
+    outline-color: utils.$base_color
+    outline-width: 4px
+
+@mixin titleWithDifferentColor($color)
+    font-size: 16pt
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif
+    font-weight: medium
+    color: $color
+    
+// Item styling
+.item-header-title
+    @include titleWithDifferentColor(white)
+    margin-bottom: 4px
+
+item-restaurant > modal-element h1
+    @include titleWithDifferentColor(black)
+    margin-bottom: 8px
+
+item-restaurant > modal-element p
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif
+.item-header-subtitle
+    font-size: 12pt
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif
+    font-weight: lighter
+    color: white
+
+.item-header-text rating-component 
+    color: yellow
+
+.grid-header-2
+    width: 100%
+.grid-header-2 > a
+    font-size: 20pt
+    text-decoration: none
+    color: white
+    margin: calc(((16pt + 4px + 10px)/2) - 5px) auto auto
+    transition: background-color .5s ease
+    
+.grid-header-2 > a:hover
+    background-clip: padding-box
+    border-radius: 5px 5px
+    background-color: rgba(255, 255, 255, 0.4)
+    
+
+.item-header-text > div 
+    position: absolute
+    bottom: 5px
+    margin-right: 20px
+    display: grid
+    width: 100%
+    grid-template-columns: auto 50px

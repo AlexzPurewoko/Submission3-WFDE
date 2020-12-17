@@ -1,0 +1,17 @@
+import "./header/HomeActivityHeader";
+import "./footer/HomeActivityFooter";
+import "./hero/HomeHero";
+import "./restaurant_item/RestaurantItem";
+import  "./rating/RatingIcons";
+import "./modal/ModalElement";
+import "./search/SearchElement";
+import "./restaurant_list/RestaurantList";
+import "./review/ConsumerReview";
+import "./review/AddReview";
+import "./badge/Badges";
+import "./image/RoundedImages";
+import "./detail/DetailSummary";
+import "./loading/ShimmerLoading";
+import "./spacer/SpacerLine";
+import "./header/DetailActivityHeader";
+import "./errorpage/ErrorPage";

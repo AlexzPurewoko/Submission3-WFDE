@@ -1,0 +1,178 @@
+$base_color : #d76700
+
+$fontcolor_all_textlogo_1 : $base_color//#000000
+$fontcolor_all_textlogo_2 : #fff //$base_color
+
+$fontfamily_all_text_logo : 'Quicksand', sans-serif
+$fontstyle_all_text_logo : bold
+$fontfamily_all_nav_item : 'Roboto', serif 
+// mobile css variables
+
+$fontsize_mobile_textlogo : 20pt
+$iconssize_mobile_menu : 44px
+$fontsize_mobile_nav_item : 13pt
+$fontstyle_mobile_nav_item : light
+
+// desktop size 
+
+$fontsize_desktop_textlogo : 20pt
+$iconssize_desktop_menu : 55px
+$fontsize_desktop_nav_item : 20pt
+$fontstyle_desktop_nav_item : regular
+
+// mixin and function that can be include
+@mixin activeItemNavHeader()
+    border-radius: 20px 20px
+    background-color: $base_color
+    background-clip: border-box
+    color: #fff
+
+@function calculateBrandTop($size_img, $size_text, $fact)
+    @return ((($size_img) / 2) - ($size_text / 2)) - $fact
+
+.wrapper
+    padding: 10px
+    width: 100%
+    position: sticky -webkit-sticky
+    display: grid
+    grid-template-columns: 80px auto 300px
+
+.container__logo 
+    display: inline
+    input
+        margin: auto 0
+
+.logo_brand
+    display: flex
+    margin: 0 auto
+    width: 100%
+    margin-left: 12px
+
+.logo_brand_title_1
+    font-family: $fontfamily_all_text_logo
+    font-style: $fontstyle_all_text_logo
+    color: $fontcolor_all_textlogo_1
+    font-size: $fontsize_desktop_textlogo
+    margin: calculateBrandTop($iconssize_desktop_menu, $fontsize_desktop_textlogo, 2px) 0 auto 0
+
+.logo_brand_title_2
+    font-family: $fontfamily_all_text_logo
+    font-style: $fontstyle_all_text_logo
+    color: $fontcolor_all_textlogo_2
+    font-size: $fontsize_desktop_textlogo
+    background-clip: padding-box
+    background-color: $base_color
+    border-radius: 6px 6px
+    margin: calculateBrandTop($iconssize_desktop_menu, $fontsize_desktop_textlogo, 2px) 0 auto 3px
+    padding-left: 4px
+    padding-right: 4px
+
+#menu 
+    width: $iconssize_mobile_menu
+    display: none
+
+#logo 
+    width: $iconssize_desktop_menu
+    display: block
+    margin: auto auto
+
+.nav_drawer 
+    width: 100%
+    margin-left: auto
+    margin-right: auto
+    text-align: center
+    background-color: inherit
+
+.nav_list 
+    list-style-type: none
+    width: 100%
+    padding: 0
+    margin: 0
+
+.nav_item
+    background-color: inherit
+    box-sizing: border-box
+    display: inline-block
+    text-align: center
+    line-height: 24px
+
+.nav_drawer a.item
+    font-family: $fontfamily_all_nav_item
+    display: inline-block
+    margin: 0.7em
+    padding: 0.6em
+    text-decoration: none
+    font-style: regular
+    color: $base_color
+    transition: background-color .4s ease
+
+
+
+.nav_drawer a:hover 
+    @include activeItemNavHeader()
+
+.nav_drawer a.active 
+    @include activeItemNavHeader()
+    
+
+
+
+@media screen and(max-width: 700px)
+    .logo_brand_title_1 
+        font-size: $fontsize_mobile_textlogo
+        margin: calculateBrandTop($iconssize_desktop_menu, $fontsize_desktop_textlogo, 8px) 0 auto 0
+    .logo_brand_title_2
+        font-size: $fontsize_mobile_textlogo
+        margin: calculateBrandTop($iconssize_desktop_menu, $fontsize_desktop_textlogo, 8px) 0 auto 3px
+        
+    .wrapper 
+        grid-template-columns: 60px auto
+    #menu
+        display: block
+        margin: 0 auto
+
+    .logo_brand 
+        width: unset
+        margin-left: unset
+        margin: 0 auto
+        padding-right: 30px
+    #logo 
+        width: $iconssize_mobile_menu
+
+    .nav_drawer 
+        z-index: 10
+        background-color: #ffffff
+        width: 300px
+        position: absolute
+        -webkit-transform: translate(-300px, 0)
+        transform: translate(-300px, 0)
+
+        transition: transform 0.8s ease
+
+    .open
+        -webkit-transform: translate(315px, 0)
+        transform: translate(315px, 0)
+        transition: transform 0.8s ease
+    
+    .close 
+        -webkit-transform: translate(-300px, 0)
+        transform: translate(-300px, 0)
+        transition: transform 0.8s ease
+
+    .nav_item
+        display: list-item
+        border-bottom: 1px solid #E0E0E0
+        width: 100%
+        text-align: left
+
+    header .nav-wrapper 
+        display: none
+
+
+    
+    
+
+
+
+    
+    

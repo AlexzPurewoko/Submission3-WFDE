@@ -1,0 +1,51 @@
+compose-review .compose-container
+    border-radius: 6px 6px 6px 6px
+    padding: 8px
+    margin-left: 12px
+    margin-right: 12px
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2 )
+    display: grid
+    grid-template-columns: 40px auto
+
+compose-review .compose-container > div:nth-child(1)
+    font-size: 20pt
+    text-align: center
+
+compose-review .compose-username
+    border-style: unset
+    font-family: 'Quicksand'
+    font-size: 13pt
+    margin-bottom: 10px
+
+compose-review .compose-container textarea.compose-body
+    width: 100%
+    height: 100%
+    font-family: 'Quicksand'
+    font-size: 11.5pt
+    border-style: unset
+    resize: none
+    
+compose-review .compose-container textarea.compose-body:focus
+    border-style: unset
+
+compose-review .compose-container > div:nth-child(2)
+    margin-right: 5px
+compose-review .compose-container > div:nth-child(2) > div
+    text-align: right
+
+    button 
+        background-color: #d76700
+        border-radius: 6px 6px
+        border-color: rgba(0, 0, 0, 0)
+        i
+            font-size: 20pt
+            color: white
+            vertical-align: middle
+
+        i:hover, i:focus
+            color: #d76700
+
+    button:hover, button:focus
+        background-color: white
+        border-color: #d76700
+        color: #d76700

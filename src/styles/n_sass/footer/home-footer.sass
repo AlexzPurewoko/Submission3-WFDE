@@ -1,0 +1,79 @@
+$base_color: #d76700
+$fontfamily_text : 'Quicksand', sans-serif
+footer
+    position: fixed
+    bottom: 0
+    left: 0
+    background-color: white
+    width: 100%
+    padding: 12px
+
+.footer-nav-item-active
+    border-radius: 15px 15px
+    background-color: $base_color
+    background-clip: padding-box
+    color: #fff
+
+home-footer 
+    display: grid
+    grid-template-columns: 200px auto
+
+    .tab-left 
+        width: 100%
+
+        ul
+            list-style-type: none
+            display: grid
+            grid-template-columns: auto auto auto
+            width: 100%
+            margin: 0
+            padding: 0
+
+            li
+                display: inline-block
+                box-sizing: border-box
+                text-align: center
+                
+
+                a.item
+                    width: 100%
+                    font-size: 14pt
+                    padding: 10px
+                    color: $base_color
+                    text-decoration: none
+
+                a:hover
+                    border-radius: 15px 15px
+                    background-color: $base_color
+                    background-clip: padding-box
+                    color: #fff
+
+    .tab-right
+        p
+            margin-top: calc( ((10px + 14pt) /2) - (12pt/2))
+            text-align: right
+            font-family: $fontfamily_text
+            font-weight: bold
+            font-size: 12pt
+            color: $base_color
+
+@media screen and(max-width: 700px)
+    home-footer
+        grid-template-columns: auto
+
+        nav li > a
+            font-size: 20pt
+            padding: 12px
+
+        .tab-right
+            display: none
+    
+
+
+footer.close
+    transform: translate(0, 150%)
+    transition: transform 1s ease
+
+footer.open
+    transform: translate(0, 0)
+    transition: transform 1s ease

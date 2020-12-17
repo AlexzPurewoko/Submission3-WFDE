@@ -1,0 +1,95 @@
+@use "../base/utils"
+    
+$heroimage_tint_color : rgba(0, 0, 0, 0.69)
+$herotext_style : bold
+$herotext_mobile_size : 24pt
+$herotext_font : utils.$roboto_font
+$hero_subtext_font : utils.$quicksand_font
+$hero_subtext_style : lighter
+$hero_subtext_mobile_size : 14pt
+$herotext_color : #fff
+
+$herotext_desktop_size : 36pt
+$hero_subtext_desktop_size : 20pt
+
+hero-home .hero__container
+    width: 100%
+    display: inline-block
+    position: relative
+
+hero-home .hero__img
+    width: 100%
+    z-index: -1
+    object-fit: cover
+
+hero-home .hero__container:after
+    position: absolute
+    height: 100%
+    width: 100%
+    background-color: rgba(0, 0, 0, .69)
+    top: 0
+    left: 0
+    display: block
+    content: ""
+
+hero-home .hero__text
+    position: absolute
+    bottom: 5px
+    z-index: 10
+    margin: auto 20px 10px 10px
+
+
+// styling text
+
+hero-home .text_container_1
+    color: white
+    font-size: $herotext_mobile_size
+    font-family: $herotext_font
+    font-weight: $herotext_style
+
+hero-home .text_container_2
+    color: white
+    font-size: $hero_subtext_mobile_size
+    font-family: $hero_subtext_font
+    font-weight: $hero_subtext_style
+
+
+
+// media query
+@media screen and ( max-width: 400px )
+    hero-home .text_container_1
+        font-size: 20pt
+
+    hero-home .text_container_2
+        font-size: 10pt
+
+@media screen and ( min-width: 401px )
+    hero-home .text_container_1
+        font-size: $herotext_mobile_size
+
+    hero-home .text_container_2
+        font-size: $hero_subtext_mobile_size
+
+
+@media screen and (min-width: 700px)
+    hero-home .hero_img
+        object-fit: cover
+
+    hero-home .text_container_1
+        width: 100%
+        font-size: $herotext_desktop_size
+
+    hero-home .text_container_2
+        width: 100%
+        font-size: $hero_subtext_desktop_size
+        margin-top: 16px
+
+    hero-home .hero__text
+        text-align: center
+        width: 100%
+        margin-left: unset
+        bottom: 0
+        top: 40%
+    
+    hero-home .hero__img
+        height: 450px

@@ -1,0 +1,107 @@
+@use "../base/utils"
+
+@mixin container()
+    max-width: 950px
+    margin-left: auto
+    margin-right: auto
+
+detail-activity
+    max-width: 950px
+
+    header
+        @include utils.boxShadowMethod(0px 2px 2px 1px rgba(0,0,0,0.13))
+        transition: all 0.5s ease
+        detail-header
+            @include container()
+        
+    header.sticky-top
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        width: 100%
+        z-index: 20
+        background-color: white
+
+    error-page
+        @include container()
+        margin-bottom: 20px
+
+    main
+        overflow: auto
+        @include container()
+        margin-bottom: 100px
+        .summary_info
+            display: grid
+            grid-gap: 40px
+            grid-template-columns: 330px auto
+            width: fit-content
+            margin-top: 20px
+            margin-left: auto
+            margin-right: auto
+            
+            .summary
+                height: fit-content
+                margin-top: auto
+                margin-bottom: auto
+                
+        .description, .menus, .reviews
+            margin-top: 10px
+            padding: 13px
+            font-family: utils.$quicksand_font
+
+            .content > p
+                text-align: center
+            
+        .menus
+            display: grid
+            grid-template-columns: auto auto
+            grid-gap: 20px
+
+            list-badge > div
+                justify-content: center
+
+        .reviews
+            .list-review > div
+                display: grid
+                grid-template-columns: auto auto
+                grid-gap: 20px
+                max-width: 900px
+                margin-left: auto
+                margin-right: auto
+                margin-bottom: 20px
+
+            .add-reviews
+                compose-review > div
+                    max-width: 880px
+                    margin-left: auto
+                    margin-right: auto
+        h1.title-section
+            font-size: 18pt
+            text-align: center
+        
+        spacer-line.title-section-line
+            div
+                margin: 10px auto 15px
+    footer
+        p
+            text-align: center
+            font-family: utils.$quicksand_font
+            color: utils.$base_color
+            font-weight: bold
+@media screen and(max-width: 700px)
+    detail-activity
+        main
+            .summary_info
+                grid-template-columns: auto
+                grid-gap: unset
+
+                rounded-images > div
+                    margin-left: auto
+                    margin-right: auto
+            .menus
+                grid-template-columns: auto
+
+            .reviews
+                .list-review > div
+                    grid-template-columns: auto

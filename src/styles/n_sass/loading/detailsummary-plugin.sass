@@ -1,0 +1,32 @@
+@mixin detailPlugin()
+    .summary-container
+        padding: 12px
+        max-width: 900px
+        align-content: center
+        margin-left: auto
+        margin-right: auto
+        display: grid
+        grid-template-columns: 330px auto
+
+    .summary-image > div
+        width: 300px
+        margin-left: auto
+        margin-right: auto
+
+    .summary-detail
+        height: fit-content
+        margin-top: auto
+        margin-bottom: auto
+
+
+
+@mixin detailPluginMedia()
+    @media screen and(max-width: 700px)
+        .summary-container
+            grid-template-columns: auto
+
+            .summary-detail > div
+                margin-left: auto
+                margin-right: auto
+    
+    

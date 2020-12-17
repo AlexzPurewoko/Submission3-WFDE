@@ -1,0 +1,43 @@
+@use "../base/utils"
+detail-header
+    display: grid 
+    grid-template-columns: 40px auto 40px
+    padding: 8px
+
+    i.material-icons
+        font-size: 18pt
+
+    button
+        padding: 6px
+        background-color: unset
+        border: none
+        color: utils.$base_color
+
+    .logo_brand
+        vertical-align: middle
+        margin-top: 4px
+        width: fit-content
+        margin-left: auto
+        margin-right: auto
+        
+        h1
+            font-family: utils.$quicksand_font
+            font-size: 18.5pt
+
+        h1:nth-child(1)
+            color: utils.$base_color
+
+        h1:nth-child(2)
+            color: white
+            margin-left: 6px
+            padding-left: 6px
+            padding-right: 6px
+            border-radius: 6px
+            background-color: utils.$base_color
+            background-clip: padding-box
+
+
+@media screen and(max-width: 600px)
+    detail-header
+        .logo_brand
+            margin-left: 12px

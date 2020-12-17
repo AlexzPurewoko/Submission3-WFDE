@@ -1,0 +1,57 @@
+@use "../base/utils"
+
+detail-summary > div
+    padding: 10px
+    align-content: center
+
+    .ratings
+        font-size: 14pt
+        display: table
+        margin-top: 8px
+        align-content: baseline
+
+        rating-component
+            display: table-cell
+            font-size: 16pt
+            color: utils.$base_color
+            padding-right: 8px
+            
+        p
+            vertical-align: top
+            display: table-cell
+            opacity: 0.85
+            font-size: 13pt
+
+    h1
+        font-family: utils.$quicksand_font
+        font-size: 18pt
+    list-badge > div
+        padding-left: unset 
+        padding-top: unset
+        span:nth-child(1)
+            margin-left: unset
+
+    p
+        font-family: utils.$quicksand_font
+        font-size: 13.2pt
+        vertical-align: middle
+
+        span.material-icons
+            color: utils.$base_color
+
+
+
+@media screen and (max-width: 700px)
+    detail-summary > div
+        h1, p
+            text-align: center
+
+        list-badge > div
+            width: fit-content
+            margin-left: auto
+            margin-right: auto
+
+        .ratings 
+            margin-left: auto
+            margin-right: auto
+            
