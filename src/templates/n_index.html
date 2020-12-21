@@ -11,7 +11,421 @@
 
 <body>
 
-    <noscript>Please enable Javascript to run this app</noscript>
+    <!-- Placeholder UI style-->
+    <!-- This style is removed when finished load assets -->
+    <style id="style-placeholder">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        #placeholder-content>header {
+            padding: 10px;
+            width: 100%;
+            position: sticky -webkit-sticky;
+            -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .13);
+            -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .13);
+            box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .13);
+            transition: all .5s ease;
+        }
+
+        #placeholder-content .header-wrapper {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: 80px auto 300px;
+        }
+
+        /** Left content **/
+        #placeholder-content .header-wrapper .left {
+            display: flex;
+        }
+
+        #placeholder-content img#pch-icon {
+            width: 55px;
+            display: block;
+            margin: auto auto;
+        }
+
+        #placeholder-content .header-wrapper>div:nth-child(2) {
+            display: flex;
+            margin: 0 auto;
+            width: 100%;
+            margin-left: 12px;
+        }
+
+        #placeholder-content .header-wrapper>div:nth-child(2)>h1:nth-child(1) {
+            font-family: sans-serif;
+            font-style: bold;
+            color: #d76700;
+            font-size: 20pt;
+            margin: 12.1666666667px 0 auto 0;
+        }
+
+        #placeholder-content .header-wrapper>div:nth-child(2)>h1:nth-child(2) {
+            font-family: sans-serif;
+            font-style: bold;
+            color: #fff;
+            font-size: 20pt;
+            background-clip: padding-box;
+            background-color: #d76700;
+            border-radius: 6px 6px;
+            margin: 12.1666666667px 0 auto 3px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+        #placeholder-content .header-wrapper>div.right {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #placeholder-content .header-wrapper>div.right>.sk-nav-item {
+            height: 25px;
+            width: 20%;
+            border-radius: 10px;
+        }
+
+        /** main content **/
+        #placeholder-content>main,
+        #placeholder-content>footer {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #placeholder-content>main {
+            margin-bottom: 100px;
+        }
+
+        #placeholder-content div.big-box {
+            height: 450px;
+        }
+
+        #placeholder-content div.big-box>div.container-titleheight {
+            display: flex;
+            height: 100%;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-left: 10px;
+            padding-bottom: 10px;
+        }
+
+        #placeholder-content div.big-box>div.container-titleheight>div:nth-child(1) {
+            width: 20%;
+            height: 24pt;
+            border-radius: 12pt;
+            background-color: white;
+        }
+
+        #placeholder-content div.big-box>div.container-titleheight>div:nth-child(2) {
+            margin-top: 10px;
+            width: 60%;
+            height: 12pt;
+            border-radius: 6pt;
+            background-color: white;
+        }
+
+        /* search content */
+        #placeholder-content .search-container {
+            display: grid;
+            grid-template-columns: 345px auto 345px;
+            vertical-align: middle;
+            margin: 10px 10px 20px;
+            margin-bottom: 20px;
+            height: 60px;
+        }
+
+        #placeholder-content .search-container>div:nth-child(1) {
+            height: 24px;
+            width: 60%;
+            border-radius: 8px;
+            margin: 18px auto auto;
+        }
+
+        #placeholder-content .search-container>div:nth-child(2) {
+            margin: auto;
+            height: 40px;
+            width: 6px;
+            border-radius: 20px;
+            border-style: unset;
+        }
+
+        #placeholder-content .search-container>div:nth-child(3) {
+            height: 48px;
+            width: 300px;
+            border-radius: 24px;
+            margin: 6px auto auto;
+        }
+
+        #placeholder-content div.rest-list {
+            display: grid;
+            justify-content: center;
+            grid-gap: 25px;
+        }
+
+        #placeholder-content div.rest-list>div {
+            border-radius: 5px;
+            height: 210px;
+            width: 100%;
+        }
+
+        #placeholder-content>footer {
+            min-height: 38px;
+            background-color: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #placeholder-content .container-footer {
+            display: grid;
+            grid-template-columns: 200px auto;
+            align-content: center;
+            padding: 12px;
+        }
+
+        #placeholder-content .container-footer>div:nth-child(1) {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 10px;
+        }
+
+        #placeholder-content .container-footer>div:nth-child(2)>div {
+            height: 12pt;
+            width: 250px;
+            border-radius: 6px;
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        #placeholder-content .container-footer .sk-footer-item {
+            height: 14pt;
+            border-radius: 6px;
+        }
+
+        #placeholder-content .sk-anim {
+            animation: placeholder-shimmer 4s infinite linear;
+            background: linear-gradient(to right, #eff1f3 15%, #e2e2e2 50%, #eff1f3 80%);
+            background-size: 1000px 100%;
+        }
+
+        noscript>p {
+            background: red;
+            padding: 6px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @keyframes placeholder-shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes placeholder-shimmer-full {
+            100% {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 401px) {
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(1) {
+                height: 24pt;
+                border-radius: 12pt;
+            }
+
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(2) {
+                height: 14pt;
+                border-radius: 7pt;
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            #placeholder-content div.rest-list {
+                grid-template-columns: 520px;
+            }
+        }
+
+        @media screen and (min-width: 695px) {
+            #placeholder-content div.rest-list {
+                grid-template-columns: 310px 310px;
+            }
+        }
+
+        @media screen and (min-width: 1005px) {
+            #placeholder-content div.rest-list {
+                grid-template-columns: 310px 310px 310px;
+            }
+        }
+
+        @media screen and (min-width: 700px) {
+            #placeholder-content div.big-box {
+                height: 450px;
+            }
+
+            #placeholder-content div.big-box>div.container-titleheight {
+                justify-content: center;
+                align-items: center;
+                padding: unset;
+            }
+
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(1) {
+                height: 36pt;
+                border-radius: 18pt;
+            }
+
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(2) {
+                height: 20pt;
+                border-radius: 10pt;
+                margin-top: 16px;
+            }
+        }
+
+        @media screen and (min-width: 701px) {
+            #placeholder-content .search-container {
+                width: 701px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(1) {
+                height: 20pt;
+                border-radius: 10pt;
+            }
+
+            #placeholder-content div.big-box>div.container-titleheight>div:nth-child(2) {
+                height: 10pt;
+                border-radius: 5pt;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            #placeholder-content div.rest-list {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            #placeholder-content div.big-box {
+                height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+
+            #placeholder-content .header-wrapper {
+                grid-template-columns: 60px auto;
+            }
+
+            #placeholder-content .header-wrapper>div:nth-child(2) {
+                width: unset;
+                margin-left: unset;
+                margin: 0 auto;
+                padding-right: 30px;
+            }
+
+            #placeholder-content .header-wrapper>div.right {
+                display: none;
+            }
+
+            #placeholder-content .search-container {
+                grid-template-columns: auto;
+                height: fit-content;
+            }
+
+            #placeholder-content .search-container>div:nth-child(2) {
+                margin: 10px auto 10px;
+                height: 6px;
+                width: 70px;
+                border-radius: 3px;
+                border-style: unset;
+            }
+
+            #placeholder-content .container-footer {
+                grid-template-columns: 1fr;
+            }
+
+            #placeholder-content .container-footer>div:nth-child(2) {
+                display: none;
+            }
+
+        }
+    </style>
+
+    <!-- Placeholder UI -->
+    <!-- This UI focused to display loading assets/resources, to achieve web-vitals :) -->
+    <div id="placeholder-content">
+        <header>
+            <div class="header-wrapper">
+                <div class="left">
+                    <div>
+                        <img alt="Logo" src="restaurant-icon.svg" id="pch-icon" width="55" height="55">
+                    </div>
+                </div>
+                <div>
+                    <h1>Fav</h1>
+                    <h1>Resto</h1>
+                </div>
+                <div class="right">
+                    <div class="sk-nav-item sk-anim" width="60"></div>
+                    <div class="sk-nav-item sk-anim" width="60"></div>
+                    <div class="sk-nav-item sk-anim" width="60"></div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="big-box sk-anim">
+                <div class="container-titleheight">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="search-container">
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+            </div>
+
+            <div class="rest-list">
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+                <div class="sk-anim"></div>
+            </div>
+        </main>
+        <footer>
+            <noscript>
+                <p>Please enable JavaScript in browser!</p>
+            </noscript>
+            <div class="container-footer">
+                <div>
+                    <div class="sk-footer-item sk-anim"></div>
+                    <div class="sk-footer-item sk-anim"></div>
+                    <div class="sk-footer-item sk-anim"></div>
+                </div>
+                <div>
+                    <div class="sk-anim"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Main Application -->
+    <!-- This element will be managed in runtime :) -->
     <application-main></application-main>
 </body>
 </html>
