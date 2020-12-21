@@ -95,6 +95,15 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/n_index.html'),
       filename: 'index.html',
       favicon: "./src/public/images/icons/restaurant-icon.svg",
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributese: true,
+        useShortDoctype: true
+      }
 
     }),
     new CopyWebpackPlugin({
