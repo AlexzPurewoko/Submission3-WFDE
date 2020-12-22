@@ -24,26 +24,35 @@ class HomeHero extends HTMLElement {
         this.innerHTML = `
 
             <div class="hero__container">
-                <img 
-                    id='hero-image_1'
-
-                    class='hero__img' 
-                    src='/images/heros/hero-image_1.jpeg' 
-                    alt='Our master chef image'></img>
-
-                <img 
-                    id='hero-image_2'
-                    style='display: none;'
-                    class='hero__img transparent' 
-                    src='/images/heros/hero-image_2.jpeg' 
-                    alt='A menu image'></img>
-
-                <img 
-                    id='hero-image_3'
-                    style="display: none;"
-                    class='hero__img transparent' 
-                    src='/images/heros/hero-image_3.jpeg' 
-                    alt='Ingredients image'></img>
+                <picture> 
+                    <source type="image/webp" srcset="/images/heros/hero-image_1.webp">
+                    <source type="image/jpeg" srcset="/images/heros/hero-image_1.jpeg">
+                    <img 
+                        id='hero-image_1'
+                        class='hero__img' 
+                        src='/images/heros/hero-image_1.jpeg' 
+                        alt='Our master chef image'></img>
+                </picture>
+                <picture> 
+                    <source type="image/webp" srcset="/images/heros/hero-image_2.webp">
+                    <source type="image/jpeg" srcset="/images/heros/hero-image_2.jpeg">
+                    <img 
+                        id='hero-image_2'
+                        style='display: none;'
+                        class='hero__img transparent' 
+                        src='/images/heros/hero-image_2.jpeg' 
+                        alt='A menu image'></img>
+                </picture>
+                <picture> 
+                    <source type="image/webp" srcset="/images/heros/hero-image_3.webp">
+                    <source type="image/jpeg" srcset="/images/heros/hero-image_3.jpeg">
+                    <img 
+                        id='hero-image_3'
+                        style='display: none;'
+                        class='hero__img transparent' 
+                        src='/images/heros/hero-image_3.jpeg' 
+                        alt='Ingredients image'></img>
+                </picture>
                 <div 
                     class='hero__text' 
                     id='explain__text_hero'>
