@@ -1,17 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 const webpackPwaManifest = require("webpack-pwa-manifest");
 const workboxPlugin = require("workbox-webpack-plugin");
-const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webp-webpack-plugin');
-// const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -138,14 +134,12 @@ module.exports = {
         {
           test: /\.(jpe?g|png)/,
           options: {
-            quality: 50
+            quality: 38
           }
         }
       ],
       overrideExtension: true
     }),
-
-
 
     new webpackPwaManifest({
       name: "Favorite Restaurant",
