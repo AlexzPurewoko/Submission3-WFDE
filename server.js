@@ -14,6 +14,6 @@ app.get('*.js', (req, res, next) => {
 
 app.use(express.static('dist'));
 
-const listener = app.listen('443', function() {
+const listener = app.listen('8080', function() {
 	console.log('Your app is listening on port ' + listener.address().port);
 });
