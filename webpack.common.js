@@ -9,6 +9,9 @@ const webpackPwaManifest = require("webpack-pwa-manifest");
 const workboxPlugin = require("workbox-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ImageminWebpackPlugin = require('imagemin-webp-webpack-plugin');
+
 module.exports = {
   entry: {
     main: path.resolve(__dirname, 'src/scripts/n_index.ts'),
@@ -106,6 +109,18 @@ module.exports = {
       }
 
     }),
+
+    new ScriptExtHtmlWebpackPlugin({
+      custom: {
+        test: /\.js$/,
+        attribute: 'crossorigin',
+        value: 'anonymous'
+      },
+      defaultAttribute: 'defer',
+      preload: {
+        test: /\.js$/
+      }
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -113,6 +128,18 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/'),
         }
       ],
+    }),
+
+    new ImageminWebpackPlugin({
+      config: [
+        {
+          test: /\.(jpe?g|png)/,
+          options: {
+            quality: 50
+          }
+        }
+      ],
+      overrideExtension: true
     }),
 
 
