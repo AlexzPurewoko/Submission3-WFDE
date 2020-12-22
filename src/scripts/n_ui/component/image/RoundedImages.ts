@@ -4,6 +4,8 @@ import "../../../../styles/n_sass/images/rounded-images.sass";
 export interface RImageAttrs {
     readonly attrs?: Record<string, unknown>;
     readonly css?: Record<string, unknown>;
+    readonly useWebp?: boolean;
+    readonly srcWebp?: string;
     readonly src: string;
     readonly alt: string;
 }
@@ -19,11 +21,25 @@ class RoundedImages extends HTMLElement {
 
         const imgPath = this._imageAttrs.src;
         const alt = this._imageAttrs.alt;
-        this.innerHTML = `
-            <div>
-                <img src="${imgPath}" alt="${alt}">
-            </div>
-        `;
+        if(this._imageAttrs.useWebp){
+            this.innerHTML = `
+                <div>
+                    <picture>
+                        <source type="image/webp" srcset="${this._imageAttrs.srcWebp}">
+                        <source type="image/jpeg" srcset="${this._imageAttrs.src}">
+                        <img src="${this._imageAttrs.src}" alt="${this._imageAttrs.alt}">
+                    </picture>
+                </div>
+            `;
+        } else {
+            this.innerHTML = `
+                <div>
+                    <img src="${imgPath}" alt="${alt}">
+                </div>
+            `;
+        }
+        
+        
         this.implementAttrs();
     }
 

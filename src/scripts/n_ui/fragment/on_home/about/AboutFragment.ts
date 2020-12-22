@@ -14,7 +14,9 @@ class AboutFragment extends Fragment {
         this.roundedImages = this.querySelector("rounded-images");
         this.roundedImages.properties = {
             src: "/images/profile.jpg",
-            alt: "Alexzander Purwoko Widiantoro's photo"
+            alt: "Alexzander Purwoko Widiantoro's photo",
+            srcWebp: "/images/profile.webp",
+            useWebp: true
         };
         this.roundedImages.render();
         this.implementClickButtons();
