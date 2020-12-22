@@ -8,7 +8,7 @@ abstract class BaseApi {
 
     protected abstract fetchPromise(): Promise<Response>
 
-    protected abstract async serveData(jsonData: Record<string, unknown>) : Promise<ApiAllResponse>
+    protected abstract serveData(jsonData: Record<string, unknown>) : Promise<ApiAllResponse>
 
     async startLoad(): Promise<void> {
         if(!this._callbacks) return;
