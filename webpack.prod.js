@@ -9,7 +9,7 @@ module.exports = merge(common, {
       maxSize: 65536
     }
   },
-  devtool: 'source-map',
+  devtool: 'none',
   module: {
     rules: [
       {

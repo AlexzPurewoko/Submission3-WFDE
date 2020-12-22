@@ -11,7 +11,9 @@ const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webp-webpack-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
 
+const BrotliPlugin = require('brotli-webpack-plugin');
 module.exports = {
   entry: {
     main: path.resolve(__dirname, 'src/scripts/n_index.ts'),
@@ -39,20 +41,22 @@ module.exports = {
       {
         test:/\.css$/i,
         use : [
-          {
-            loader: MiniCssExtractPlugin.loader
-          }
+          // {
+          //   loader: MiniCssExtractPlugin.loader
+          // }
+          'style-loader'
           , 'css-loader']
       },
       {
         test:/\.(sa|sc)ss$/i,
         use : [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '/styles/'
-            }
-          }
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {
+          //     publicPath: '/styles/'
+          //   }
+          // }
+          'style-loader'
           , 'css-loader', {
             loader: 'sass-loader',
             options: {
@@ -85,14 +89,14 @@ module.exports = {
       jQuery: 'jquery'
     }),
 
-    new MiniCssExtractPlugin({
-      filename: 'css/[name]-[hash].style.css',
-      chunkFilename: '[name]-[hash].style.css'
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: 'css/[name]-[hash].style.css',
+    //   chunkFilename: '[name]-[hash].style.css'
+    // }),
 
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
-    }),
+    // new PurgeCSSPlugin({
+    //   paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
+    // }),
 
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/templates/n_index.html'),
@@ -142,6 +146,12 @@ module.exports = {
       overrideExtension: true
     }),
 
+
+    new BrotliPlugin({
+			test: /\.(js)$/,
+			threshold: 10240,
+			minRatio: 0.8
+		}),
 
     new webpackPwaManifest({
       name: "Favorite Restaurant",
