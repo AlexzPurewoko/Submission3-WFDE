@@ -148,9 +148,7 @@ module.exports = {
 
 
     new BrotliPlugin({
-			test: /\.(js)$/,
-			threshold: 10240,
-			minRatio: 0.8
+			test: /\.(js)$/
 		}),
 
     new webpackPwaManifest({
