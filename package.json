@@ -6,6 +6,7 @@
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "dev-debug": "webpack-dev-server --config webpack.dev.debug.js",
     "lint": "eslint ./src/scripts --ext .ts",
     "lint-then-fix": "eslint ./src/scripts --ext .ts --fix",
     "test": "karma start"
