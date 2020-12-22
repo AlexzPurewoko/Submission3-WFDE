@@ -21,6 +21,9 @@ class MainApplication extends HTMLElement {
     private activityBackStack: BackStackProperty[] = [];
     private currentHash = ""
 
+    private hasScrollLocked = false;
+    private hasResizeLocked = false;
+
     private listenerReference = {
         hashChange: () => this.onHashChanged(),
         onResize: (e: Event) => this.onResizeCallback(e),
@@ -67,6 +70,9 @@ class MainApplication extends HTMLElement {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     disconnectedCallback(){
         this.activityBackStack = [];
+        window.onhashchange = undefined;
+        window.onscroll = undefined;
+        window.onresize = undefined;
         document.removeEventListener("hashchange", this.listenerReference.hashChange);
         document.removeEventListener("resize", this.listenerReference.onResize);
     }
@@ -132,16 +138,26 @@ class MainApplication extends HTMLElement {
         this.activityBackStack.push(backStackProperty);
     }
 
+
+    // event listener
+
     private onScrollChange(event: Event){
-        if(!this.currentActivityRef) return;
+        if(!this.currentActivityRef && this.hasScrollLocked) return;
         const lifecycleCb = <LifecycleCallback> this.currentActivityRef;
         lifecycleCb.onScrollEvent(event);
+        this.hasScrollLocked = true;
+        setTimeout(() => {
+            this.hasScrollLocked = false;
+        }, 600);
     }
     private onResizeCallback(event: Event) {
-        console.log("onresize");
-        if(!this.currentActivityRef) return;
+        if(!this.currentActivityRef && this.hasResizeLocked) return;
         const lifecycleCb = <LifecycleCallback> this.currentActivityRef;
         lifecycleCb.onResizeEvent(event);
+        this.hasResizeLocked = true;
+        setTimeout(() => {
+            this.hasResizeLocked = false;
+        }, 600);
     }
 
     private onHashChanged() {

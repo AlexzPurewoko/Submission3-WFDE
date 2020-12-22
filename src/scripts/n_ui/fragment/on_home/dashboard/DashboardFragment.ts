@@ -73,15 +73,18 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
         this.swSpacer("horizontal");
 
         // generate shimmer loading
+
         utils.generateShimmerLoading(this.shimmerLoadingView);
         this.defineSpacer();
-        
-        // display initiate page
-        this.apiRest = new GetAllRestaurants();
-        this.apiRest.callbacks = this;
-        this.apiRest.startLoad();
+        setTimeout(() => {
+            // display initiate page
+            this.apiRest = new GetAllRestaurants();
+            this.apiRest.callbacks = this;
+            this.apiRest.startLoad();
 
-        this.homeHero.resumeAnim();
+            this.homeHero.resumeAnim();
+        }, 2000);
+        
     }
     onSaveState(): void {
         this.homeHero.pauseAnim();
