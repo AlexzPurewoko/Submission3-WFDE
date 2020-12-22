@@ -13,7 +13,6 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webp-webpack-plugin');
 // const CompressionPlugin = require('compression-webpack-plugin');
 
-const BrotliPlugin = require('brotli-webpack-plugin');
 module.exports = {
   entry: {
     main: path.resolve(__dirname, 'src/scripts/n_index.ts'),
@@ -147,9 +146,6 @@ module.exports = {
     }),
 
 
-    new BrotliPlugin({
-			test: /\.(js)$/
-		}),
 
     new webpackPwaManifest({
       name: "Favorite Restaurant",
