@@ -1,4 +1,4 @@
-import { IConsumerReview } from "./IConsumerReview";
+import { ICustomerReview } from "./ICustomerReview";
 import { IRestaurantMenus } from "./IRestaurantMenus";
 import { ISingleName } from "./ISingleName";
 
@@ -12,6 +12,6 @@ export interface IDetailRestaurantItem {
     readonly description: string,
     readonly categories: ISingleName[],
     readonly menus: IRestaurantMenus,
-    readonly consumerReviews: IConsumerReview[]
+    readonly customerReviews: ICustomerReview[]
     pictureLocation?: string
 }

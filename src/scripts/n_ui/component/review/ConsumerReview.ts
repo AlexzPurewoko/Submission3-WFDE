@@ -1,11 +1,11 @@
-import { IConsumerReview } from "../../../n_logic/api/data/detail/IConsumerReview";
 import "../../../../styles/n_sass/review/item-review-consumer.sass";
+import { ICustomerReview } from "../../../n_logic/api/data/detail/ICustomerReview";
 
 class ConsumerReview extends HTMLElement {
 
-    private _data: IConsumerReview = null;
+    private _data: ICustomerReview = null;
 
-    set data(nData: IConsumerReview){
+    set data(nData: ICustomerReview){
         this._data = nData;
         this.render();
     }

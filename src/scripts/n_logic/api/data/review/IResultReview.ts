@@ -1,7 +1,7 @@
-import { IConsumerReview } from "../detail/IConsumerReview";
+import { ICustomerReview } from "../detail/ICustomerReview";
 
 export interface IResultReview{
     readonly error: boolean,
     readonly message: string,
-    readonly customerReviews: IConsumerReview[]
+    readonly customerReviews: ICustomerReview[]
 }

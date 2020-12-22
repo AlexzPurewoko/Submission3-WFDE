@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { IConsumerReview } from "../../../n_logic/api/data/detail/IConsumerReview";
+import { ICustomerReview } from "../../../n_logic/api/data/detail/ICustomerReview";
 import { IDetailRestaurantItem } from "../../../n_logic/api/data/detail/IDetailRestaurantItem";
 import { ISingleName } from "../../../n_logic/api/data/detail/ISingleName";
 import { IResultReview } from "../../../n_logic/api/data/review/IResultReview";
@@ -84,7 +84,7 @@ export const applyListReviews = (iItem: IDetailRestaurantItem, target: HTMLEleme
 
     spacerLine.attrs = spacerAttrs;
     divListContainer.innerHTML = '';
-    iItem.consumerReviews.forEach((itemReview: IConsumerReview) => {
+    iItem.customerReviews.forEach((itemReview: ICustomerReview) => {
         const createElm = <ConsumerReview> document.createElement("review-item-consumer");
         createElm.data = itemReview;
         divListContainer.append(createElm);
@@ -105,7 +105,7 @@ export const editReviewItems = (data: IResultReview, target: HTMLElement) => {
     const divListContainer: HTMLElement = target.querySelector(".list");
     
     divListContainer.innerHTML = '';
-    data.customerReviews.forEach((itemReview: IConsumerReview) => {
+    data.customerReviews.forEach((itemReview: ICustomerReview) => {
         const createElm = <ConsumerReview> document.createElement("review-item-consumer");
         createElm.data = itemReview;
         divListContainer.append(createElm);
