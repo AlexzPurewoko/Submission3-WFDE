@@ -14,8 +14,8 @@
     "test": "karma start",
 
     "start": "node server.js",
-    "build": "webpack --config webpack.prod.js",
-    
+    "build": "webpack --config webpack.prod.js"
+
   },
   "keywords": [],
   "author": "your_name <your.email@domain.com>",
