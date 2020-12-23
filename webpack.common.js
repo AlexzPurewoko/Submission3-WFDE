@@ -134,7 +134,7 @@ module.exports = {
         {
           test: /\.(jpe?g|png)/,
           options: {
-            quality: 38
+            quality: 26
           }
         }
       ],
