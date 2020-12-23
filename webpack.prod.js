@@ -34,7 +34,7 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new BundleAnalyzer(),
+    // new BundleAnalyzer(),
 
     new BrotliPlugin({
 			test: /\.(js)$/
