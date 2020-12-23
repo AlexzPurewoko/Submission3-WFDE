@@ -81,10 +81,10 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
             this.apiRest = new GetAllRestaurants();
             this.apiRest.callbacks = this;
             this.apiRest.startLoad();
-
-            this.homeHero.resumeAnim();
-        }, 2000);
+        }, 700);
         
+        // setTimeout(() => 
+        // this.homeHero.resumeAnim(), 2000);
     }
     onSaveState(): void {
         this.homeHero.pauseAnim();

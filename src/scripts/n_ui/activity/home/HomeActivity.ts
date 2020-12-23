@@ -40,8 +40,8 @@ class HomeActivity extends BaseActivity {
         // add all fragment to layout
         const mainElement = this.querySelector("main");
         this.fragmentAdapter.attachFragment("dashboard", "dashboard-fragment", mainElement);
-        this.fragmentAdapter.attachFragment("favorite", "favorite-fragment", mainElement);
-        this.fragmentAdapter.attachFragment("about", "about-fragment", mainElement);
+        // this.fragmentAdapter.attachFragment("favorite", "favorite-fragment", mainElement);
+        // this.fragmentAdapter.attachFragment("about", "about-fragment", mainElement);
 
 
         this._homeFooter.toggleActiveItem("dashboard");

@@ -7,15 +7,17 @@ import '../styles/css/material-icons.min.css';
 import 'lazysizes'
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import MainApplication from "./n_ui/application/application";
+// import * as actSw from "./n_utils/activate-sw";
 
 $(() => {
     const application =<MainApplication> $('application-main')[0];
     application.runApplication();
-    $('#placeholder-content').hide();
-    $(application).show();
+    // actSw.activateServiceWorker(true);
+    // $('#placeholder-content').hide();
+    // $(application).show();
 
-    setTimeout(() => {
-        $('#style-placeholder').remove();
-        $('#placeholder-content').remove();
-    }, 1500);
+    // setTimeout(() => {
+    //     $('#style-placeholder').remove();
+    //     $('#placeholder-content').remove();
+    // }, 1500);
 })
