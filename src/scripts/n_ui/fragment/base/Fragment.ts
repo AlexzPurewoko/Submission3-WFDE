@@ -39,6 +39,7 @@ abstract class Fragment extends HTMLElement {
     }
 
     abstract onRenderPage(): void
+    abstract onResumed(): void
     abstract onSaveState(): void
     abstract onDestroy(): void
     abstract titleFragment(): string

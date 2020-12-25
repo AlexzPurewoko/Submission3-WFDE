@@ -40,7 +40,7 @@ class SearchElement extends HTMLElement {
         this._btnSearch = this.querySelector(".submit");
 
         this._btnSearch.onclick = () => {
-            const retValue = $(this._edtText).val().toString();
+            const retValue = (<HTMLInputElement> this._edtText).value;
             if(this._cb)
             this._cb(retValue)
         }

@@ -21,6 +21,11 @@ class AboutFragment extends Fragment {
         this.roundedImages.render();
         this.implementClickButtons();
     }
+
+    onResumed(): void {
+
+    }
+    
     onSaveState(): void {
         
     }

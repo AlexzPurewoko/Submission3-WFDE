@@ -1,16 +1,19 @@
 import "../../../../styles/n_sass/main/hero-main.sass";
+import { Util } from "../../../n_utils/util";
 
 class HomeHero extends HTMLElement {
 
     private isAnimStopped = true;
-    private listImage: JQuery<Element>[] = [];
-    private listText: JQuery<Element>[] = [];
+    private listImage: HTMLElement[] = [];
+    private listText: HTMLElement[] = [];
     private currentIndex = 0;
     private currentTextIndex = 0;
+    private timerIdInterval: any;
 
 
     pauseAnim(): void {
         this.isAnimStopped = true;
+        clearInterval(this.timerIdInterval);
     }
 
     resumeAnim(): void {
@@ -25,32 +28,38 @@ class HomeHero extends HTMLElement {
 
             <div class="hero__container">
                 <picture> 
-                    <source type="image/webp" srcset="/images/heros/hero-image_1.webp">
-                    <source type="image/jpeg" srcset="/images/heros/hero-image_1.jpeg">
+                    <source media="(max-width: 400px)" srcset="/images/heros/hero-image_1-small.webp">
+                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_1-medium.webp">
+                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_1-large.webp">
+                    <source media="(min-width: 700px)" srcset="/images/heros/hero-image_1-extra.webp">
                     <img 
                         id='hero-image_1'
                         class='hero__img' 
-                        src='/images/heros/hero-image_1.jpeg' 
+                        src='/images/heros/hero-image_1-extra.webp' 
                         alt='Our master chef image'></img>
                 </picture>
                 <picture> 
-                    <source type="image/webp" srcset="/images/heros/hero-image_2.webp">
-                    <source type="image/jpeg" srcset="/images/heros/hero-image_2.jpeg">
+                    <source media="(max-width: 400px)" srcset="/images/heros/hero-image_2-small.webp">
+                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_2-medium.webp">
+                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_2-large.webp">
+                    <source media="(min-width: 700px)" srcset="/images/heros/hero-image_2-extra.webp">
                     <img 
                         id='hero-image_2'
                         style='display: none;'
-                        class='hero__img transparent' 
-                        src='/images/heros/hero-image_2.jpeg' 
+                        class='lazyload hero__img transparent' 
+                        src='/images/heros/hero-image_2-extra.webp' 
                         alt='A menu image'></img>
                 </picture>
                 <picture> 
-                    <source type="image/webp" srcset="/images/heros/hero-image_3.webp">
-                    <source type="image/jpeg" srcset="/images/heros/hero-image_3.jpeg">
+                    <source media="(max-width: 400px)" srcset="/images/heros/hero-image_3-small.webp">
+                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_3-medium.webp">
+                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_3-large.webp">
+                    <source media="(min-width: 700px)" srcset="/images/heros/hero-image_3-extra.webp">
                     <img 
                         id='hero-image_3'
                         style='display: none;'
-                        class='hero__img transparent' 
-                        src='/images/heros/hero-image_3.jpeg' 
+                        class='lazyload hero__img transparent' 
+                        src='/images/heros/hero-image_3-extra.webp' 
                         alt='Ingredients image'></img>
                 </picture>
                 <div 
@@ -72,29 +81,30 @@ class HomeHero extends HTMLElement {
             </div>
         `;
         this.listImage = [
-            $(this.querySelector("#hero-image_1")),
-            $(this.querySelector("#hero-image_2")),
-            $(this.querySelector("#hero-image_3"))
+            this.querySelector("#hero-image_1"),
+            this.querySelector("#hero-image_2"),
+            this.querySelector("#hero-image_3")
         ];
 
         this.listText = [
-            $(this.querySelector("#text-hero_1")),
-            $(this.querySelector("#text-hero_2")),
-            $(this.querySelector("#text-hero_3"))
+            this.querySelector("#text-hero_1"),
+            this.querySelector("#text-hero_2"),
+            this.querySelector("#text-hero_3")
         ]
     }
 
     private anim() {
         if (this.isAnimStopped) return;
-        setTimeout(() => {
+
+        this.timerIdInterval = setInterval(() => {
             if (this.isAnimStopped) return;
-            this.listImage[this.currentIndex++].slideUp();
+            Util.slideUp(this.listImage[this.currentIndex++]);
 
             if (this.currentIndex >= this.listImage.length) this.currentIndex = 0;
-            this.listImage[this.currentIndex].slideDown(() => this.anim());
-            this.listText[this.currentTextIndex++].fadeOut(() => {
+            Util.slideDown(this.listImage[this.currentIndex]);
+            Util.fadeOut(this.listText[this.currentTextIndex++], 300, () => {
                 if (this.currentTextIndex >= this.listText.length) this.currentTextIndex = 0;
-                this.listText[this.currentTextIndex].fadeIn();
+                Util.fadeIn(this.listText[this.currentTextIndex], 300)
             })
         }, 5000);
     }

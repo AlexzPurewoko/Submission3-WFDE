@@ -7,7 +7,7 @@ interface ActivityInfo {
 const AppManifest = {
     homepage: "HomeActivity",
     mode: "normal", // [ test | normal ]
-    testPage: "TestActivity",
+    testPage: "none",
     activities: new Map<string, ActivityInfo>([
         ["HomeActivity", {
             activityName: "home-activity",
@@ -19,12 +19,6 @@ const AppManifest = {
             activityName: "detail-activity",
             isRootActivity: false,
             urlBase: "/DetailActivity/{id}/{fromFavorite | empty }"
-        }],
-
-        ["TestActivity", {
-            activityName: "test-activity",
-            isRootActivity: true,
-            urlBase: "/TestActivity"
         }],
     ])
 } 

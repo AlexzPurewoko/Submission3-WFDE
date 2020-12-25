@@ -2,9 +2,11 @@
 import NavItemCallback from '../../../n_utils/callbacks/NavItemCallback';
 import HomeActivityFooter from '../../component/footer/HomeActivityFooter';
 import HomeActivityHeader from '../../component/header/HomeActivityHeader';
-import { GeneralCb } from '../../fragment/base/Fragment';
+import Fragment, { GeneralCb } from '../../fragment/base/Fragment';
 import BaseActivity from '../base/BaseActivity';
 import "../../../../styles/n_sass/main/main-activity.sass";
+import { Util } from '../../../n_utils/util';
+import { htmlLayout } from './_source_layout';
 
 class HomeActivity extends BaseActivity {
     private _homeHeader: HomeActivityHeader;
@@ -40,8 +42,8 @@ class HomeActivity extends BaseActivity {
         // add all fragment to layout
         const mainElement = this.querySelector("main");
         this.fragmentAdapter.attachFragment("dashboard", "dashboard-fragment", mainElement);
-        // this.fragmentAdapter.attachFragment("favorite", "favorite-fragment", mainElement);
-        // this.fragmentAdapter.attachFragment("about", "about-fragment", mainElement);
+        this.fragmentAdapter.attachFragment("favorite", "favorite-fragment", mainElement);
+        this.fragmentAdapter.attachFragment("about", "about-fragment", mainElement);
 
 
         this._homeFooter.toggleActiveItem("dashboard");
@@ -52,7 +54,11 @@ class HomeActivity extends BaseActivity {
         
     }
     onResumed(): void {
-        
+        this.mapActiveFragment.forEach((v: boolean, k: string) => {
+            if(v){
+                this.fragmentAdapter.getFragment(k)?.onResumed();
+            }
+        })
     }
     onDestroy(): void {
         // detach all fragments
@@ -91,24 +97,7 @@ class HomeActivity extends BaseActivity {
     }
 
     private renderPage(): string {
-        return `
-
-            <a href="#main_content" data-count="3" tabindex="0" id='skipcontent' class="skip-link">Skip to Content</a>
-            <header>
-                <home-header class="wrapper"></home-header>
-            </header>
-
-            <main style="margin-bottom: 100px;">
-                <!-- all fragment goes here, and triggered with tabs -->
-            </main>
-
-            <footer>
-                <!--<p class='footer_left' tabindex="0">Copyright @2020 APWDevs</p>
-                <p class='footer_right' tabindex="0" aria-label="Thanks to dicoding">@DicodingIDN</p>-->
-                <home-footer> </home-footer>
-            </footer> 
-        
-        `;
+        return htmlLayout;
     }
 
     private skipContentImpl(){
@@ -121,7 +110,7 @@ class HomeActivity extends BaseActivity {
             let targetElement: HTMLElement = null;//<HTMLElement> this.querySelector(referrer);
             for(let x = 1; x <= count; x++){
                 const elm = <HTMLElement> this.querySelector(`${referrer}${x}`);
-                const a = $(elm).is(":visible");
+                const a = Util.isVisible(elm.parentElement);
                 if(a){
                     targetElement = elm;
                     break;

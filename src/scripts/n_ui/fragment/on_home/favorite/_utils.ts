@@ -32,11 +32,9 @@ export const cvtFavDataToItem = (source: IDetailRestaurantItem[]): IRestaurantIt
 }
 
 export const generateShimmerLoading = (shimmer: HTMLElement): void => {
-    const shimmers : ShimmerLoading[] = [];
     for(let x = 0; x < 3; x++){
         const shimmLoading = <ShimmerLoading> document.createElement("shimmer-loading");
         shimmLoading.views = new CardItem();
-        shimmers.push(shimmLoading);
+        shimmer.append(shimmLoading);
     }
-    $(shimmer).append(shimmers);
 }

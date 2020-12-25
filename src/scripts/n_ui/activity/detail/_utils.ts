@@ -132,10 +132,10 @@ export const showHideShimmerLayout = (shimmer: ShimmerLoading[], state: "show" |
     shimmer.forEach((item) => {
         switch(state) {
             case "hide": 
-                $(item).hide();
+                item.style.display = 'none';
                 break;
             case "show":
-                $(item).show();
+                item.style.display = "initial";
         }
     });
 }

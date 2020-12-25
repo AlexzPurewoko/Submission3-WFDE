@@ -20,6 +20,8 @@ import PostReview from "../../../n_logic/api/modules/reviewResult/PostReview";
 import { IResultReview } from "../../../n_logic/api/data/review/IResultReview";
 import ErrorPage, { AvailableTypes } from "../../component/errorpage/ErrorPage";
 import ShimmerLoading from "../../component/loading/ShimmerLoading";
+import { htmlLayout } from "./_source_layout";
+import { Util } from "../../../n_utils/util";
 
 class DetailActivity extends BaseActivity implements ApiCallbacks{
 
@@ -49,6 +51,8 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
 
     private _apiCall: GetRestaurantDetail = null;
 
+    private _params: any[] = null;
+
 
     onCreated(params: any[]): void {
         super.onCreated(params);
@@ -68,19 +72,21 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
         this._header.callback = this._navItemCv;
         this._header.render();
 
-        this._header.isDisabled = true
-        if(params[1] !== undefined && params[1] === "fromFavorite"){
-            this.loadFromFavorite(params[0]);
-        } else {
-            this.loadFromApi(params[0]);
-        }
+        this._header.isDisabled = true;
+
+        this._params = params;
         
     }
     onPaused(): void {
         
     }
     onResumed(): void {
-        
+        const params = this._params;
+        if(params[1] !== undefined && params[1] === "fromFavorite"){
+            this.loadFromFavorite(params[0]);
+        } else {
+            this.loadFromApi(params[0]);
+        }
     }
     onDestroy(): void {
 
@@ -93,78 +99,7 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
     }
 
     private render(): string {
-        return `
-            <header>
-                <detail-header></detail-header>
-            </header>
-
-            <main>
-                <article tabindex="0" class="summary_info">
-                    <shimmer-loading></shimmer-loading>
-                    <section class="image-poster">
-                        <rounded-images></rounded-images>
-                    </section>
-
-                    <section class="summary">
-                        <detail-summary></detail-summary>
-                    </section>
-                </article>
-
-                
-                <article tabindex="0" class="description">
-                    <section class="titles">
-                        <h1 class="title-section">Description</h1>
-                        <spacer-line class="title-section-line"></spacer-line>
-                    </section>
-
-                    <section class="content">
-                        <p></p>
-                    </section>
-                    <shimmer-loading></shimmer-loading>
-                </article>
-
-                
-                <article tabindex="0" class="menus">
-                    <section class="food-menu">
-                        <h1 class="title-section">Food Menu's</h1>
-                        <spacer-line class="title-section-line"></spacer-line>
-                        <list-badge></list-badge>
-                        <shimmer-loading></shimmer-loading>
-                    </section>
-
-                    <section class="drink-menu">
-                        <h1 class="title-section">Drink's Menu</h1>
-                        <spacer-line class="title-section-line"></spacer-line>
-                        <list-badge></list-badge>
-                        <shimmer-loading></shimmer-loading>
-                    </section>
-                </article>
-                
-
-                <article tabindex="0" class="reviews">
-                    <section class="list-review">
-                        <!-- generates dynamically -->
-                        <h1 class="title-section">All Reviews</h1>
-                        <spacer-line class="title-section-line"></spacer-line>
-                        <div class="list"></div>
-                        <shimmer-loading></shimmer-loading>
-                    </section>
-
-                    <section tabindex="0" class="add-reviews">
-                        <h1 class="title-section">Add Review Here</h1>
-                        <spacer-line class="title-section-line"></spacer-line>
-                        <compose-review></compose-review>
-                        <shimmer-loading></shimmer-loading>
-                    </section>
-                </article>
-            </main>
-
-            <error-page></error-page>
-
-            <footer>
-                <p>Copyright @2020 by APWDevs</p>
-            </footer>
-        `;
+        return htmlLayout;
     }
 
     private addReviewCbImpl(dataContract: IPostReview){
@@ -269,19 +204,21 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
         switch(stateUI){
             case "loading": {
                 utils.showHideShimmerLayout(this._loadingView, "show");
-                $(this._errorPage).hide();
+                // $(this._errorPage).hide();
+                Util.hide(this._errorPage);
                 break;
             }
             case "show": {
                 utils.showHideShimmerLayout(this._loadingView, "hide");
-                $(this._errorPage).hide();
+                // $(this._errorPage).hide();
+                Util.hide(this._errorPage);
                 break;
             }
 
             case "errors": {
                 utils.showHideShimmerLayout(this._loadingView, "hide");
-                $(this._errorPage).show();
-                $(this._mainElement).hide();
+                Util.show(this._errorPage);
+                Util.hide(this._mainElement);
             }
         }
     }
@@ -289,7 +226,7 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
     private checkAndStickyHeader() {
         const offTop = window.pageYOffset;
         const header = this._header.parentElement;
-        const offTopMin = $(header).height();
+        const offTopMin = Util.computeHeight(header);
         if(offTop > offTopMin && !this._isHeaderSticky){
             header.classList.add("sticky-top");
             this._isHeaderSticky = true;

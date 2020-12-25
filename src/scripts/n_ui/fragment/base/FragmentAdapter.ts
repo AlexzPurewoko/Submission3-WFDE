@@ -70,7 +70,7 @@ export class FragmentAdapter {
             if(!this._fragments.has(key))return;
 
             const fg = this._fragments.get(key);
-            fg.onRenderPage();
+            fg.onResumed();
             fg.setAttribute("style", "display:initial;");
         });
     }

@@ -48,8 +48,8 @@ class AddReview extends HTMLElement {
     private _implementSubmit() {
         if(!this._restId || !this._sendCallback) return;
         this._btnSubmit.onclick = () => {
-            const value = <string> $(this._textArea).val();
-            const username = <string> $(this._username).val();
+            const value = (<HTMLTextAreaElement> this._textArea).value;
+            const username = (<HTMLInputElement> this._username).value;
             if(value && username){
                 const compose :IPostReview = {
                     id: this._restId,

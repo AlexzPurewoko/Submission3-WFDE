@@ -13,6 +13,7 @@ import { IRestaurantItem } from "../../../../n_logic/api/data/lists/IRestaurantI
 import { DBCallbacks } from "../../../../n_logic/db/callbacks/DBCallbacks";
 import DatabaseHelper from "../../../../n_logic/db/helper/DatabaseHelper";
 import ErrorPage, { AvailableTypes } from "../../../component/errorpage/ErrorPage";
+import { Util } from "../../../../n_utils/util";
 
 class FavoriteFragment extends Fragment {
 
@@ -44,9 +45,13 @@ class FavoriteFragment extends Fragment {
         utils.generateShimmerLoading(this._loadingView);
         
         utils.setSpacerFav(this._spacerLine);
-        this.fetchFromFavorite();
         
     }
+
+    onResumed(): void {
+        this.fetchFromFavorite();
+    }
+
     onSaveState(): void {
         
     }
@@ -99,21 +104,21 @@ class FavoriteFragment extends Fragment {
     private hideShow(stateUI: "loading" | "lists" | "error"){
         switch(stateUI){
             case "loading" : {
-                $(this._loadingView).show();
-                $(this._errorPage).hide();
-                $(this._restaurantLists).hide();
+                Util.show(this._loadingView);
+                Util.hide(this._errorPage);
+                Util.hide(this._restaurantLists);
                 break;
             }
             case "lists": {
-                $(this._loadingView).hide();
-                $(this._errorPage).hide();
-                $(this._restaurantLists).show();
+                Util.hide(this._loadingView);
+                Util.hide(this._errorPage);
+                Util.show(this._restaurantLists);
                 break;
             }
             case "error": {
-                $(this._loadingView).hide();
-                $(this._errorPage).show();
-                $(this._restaurantLists).hide();
+                Util.hide(this._loadingView);
+                Util.show(this._errorPage);
+                Util.hide(this._restaurantLists);
             }
         }
     }

@@ -39,7 +39,7 @@ class MainApplication extends HTMLElement {
         
         // we should check separately
         // if its empty, then start root/homepage.
-        /*
+        
         if(window.location.hash === "" || window.location.hash === "#"){
             const page = this._manifest.mode === "test" ? this._manifest.testPage : this._manifest.homepage;
             const homepageInfo = this._manifest.activities.get(page);
@@ -56,7 +56,7 @@ class MainApplication extends HTMLElement {
         // register the event action
         window.onhashchange = this.listenerReference.hashChange;
         window.onscroll = this.listenerReference.onScroll;
-        window.onresize = this.listenerReference.onResize; */
+        window.onresize = this.listenerReference.onResize; 
     }
 
     // Preferred only for activity instance to ensures that they 

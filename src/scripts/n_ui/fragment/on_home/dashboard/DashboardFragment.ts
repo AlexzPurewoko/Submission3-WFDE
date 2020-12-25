@@ -17,6 +17,7 @@ import * as utils from "./_utils";
 import RestaurantItem from "../../../component/restaurant_item/RestaurantItem";
 import ErrorPage, { AvailableTypes } from "../../../component/errorpage/ErrorPage";
 import { ISearchResponse } from "../../../../n_logic/api/data/search/ISearchResponse";
+import { Util } from "../../../../n_utils/util";
 
 
 const spacerAttrs: SpacerAttrs[] = [
@@ -37,7 +38,7 @@ const spacerAttrs: SpacerAttrs[] = [
 class DashboardFragment extends Fragment implements ApiCallbacks {
 
     // view elements.
-    private homeHero:HomeHero = null;
+    private homeHero: HomeHero = null;
     private searchElement: SearchElement;
     private spacerLine: SpacerLine = null;
     private restaurantList: RestaurantList = null;
@@ -48,10 +49,10 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
 
 
     private apiRest: BaseApi = null;
-    private isTitleSearchOnTop  = false;
+    private isTitleSearchOnTop = false;
     private tempTitleSearchOffsetTop = 0;
     private isSearchApiRunning = false;
-    
+
 
     onRenderPage(): void {
         this.innerHTML = this.render();
@@ -76,68 +77,65 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
 
         utils.generateShimmerLoading(this.shimmerLoadingView);
         this.defineSpacer();
-        setTimeout(() => {
-            // display initiate page
-            this.apiRest = new GetAllRestaurants();
-            this.apiRest.callbacks = this;
-            this.apiRest.startLoad();
-        }, 700);
-        
-        // setTimeout(() => 
-        // this.homeHero.resumeAnim(), 2000);
+        this.apiRest = new GetAllRestaurants();
+        this.apiRest.callbacks = this;
     }
+
+    onResumed(): void {
+        this.apiRest.startLoad();
+        this.homeHero.resumeAnim();
+    }
+
     onSaveState(): void {
         this.homeHero.pauseAnim();
     }
     onDestroy(): void {
         this.homeHero.pauseAnim();
-        
+
     }
     titleFragment(): string {
         return "Home";
     }
     onReceiveMessage(key: GeneralCb, _value: any): void {
-        switch(key){
+        switch (key) {
             case GeneralCb.MESSAGE_ONRESIZE: {
                 this.defineSpacer();
             }
-            break;
+                break;
             case GeneralCb.MESSAGE_ONSCROLL: {
                 this.checkAndFixedTopSearchTitles();
             }
         }
     }
 
-    onLoad(): void{
+    onLoad(): void {
         this.hideShow("loading");
     }
 
     onFinished(data: IAllResponse): void {
 
-        setTimeout((): void => {
-            if(data.isSuccess && data.response.error === false){
+        if (data.isSuccess && data.response.error === false) {
 
-                if(this.isSearchApiRunning){
-                    const resp = <ISearchResponse> data.response;
-                    if(resp.restaurants.length < 1) {
-                        this.hideShow("search-unavailable");
-                    } else {
-                        this.hideShow("success");
-                        this.renderListRestaurant(resp.restaurants);
-                    }
+            if (this.isSearchApiRunning) {
+                const resp = <ISearchResponse>data.response;
+                if (resp.restaurants.length < 1) {
+                    this.hideShow("search-unavailable");
                 } else {
                     this.hideShow("success");
-                    const resp = <IRestaurantResponse> data.response;
                     this.renderListRestaurant(resp.restaurants);
                 }
             } else {
-                this.hideShow("error-offline");
+                this.hideShow("success");
+                const resp = <IRestaurantResponse>data.response;
+                this.renderListRestaurant(resp.restaurants);
             }
-        }, 600);
-        
+        } else {
+            this.hideShow("error-offline");
+        }
+
     }
 
-    private render() : string {
+    private render(): string {
         return `
             <section class='hero'>
                 <hero-home></hero-home>
@@ -162,15 +160,15 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
         const wOffsetTop = window.pageYOffset;
 
         const sTitleClassList = this.titleSearchGroup.classList;
-        if(titleOffsetTop < wOffsetTop && !this.isTitleSearchOnTop){
-            
-            if(!sTitleClassList.contains("fixed-top-titles")){
+        if (titleOffsetTop < wOffsetTop && !this.isTitleSearchOnTop) {
+
+            if (!sTitleClassList.contains("fixed-top-titles")) {
                 this.isTitleSearchOnTop = true;
                 this.tempTitleSearchOffsetTop = this.titleSearchGroup.offsetTop;
                 sTitleClassList.add("fixed-top-titles");
             }
-        } 
-        if(this.isTitleSearchOnTop && this.tempTitleSearchOffsetTop > wOffsetTop) {
+        }
+        if (this.isTitleSearchOnTop && this.tempTitleSearchOffsetTop > wOffsetTop) {
 
             sTitleClassList.remove("fixed-top-titles");
             this.isTitleSearchOnTop = false;
@@ -178,15 +176,15 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
     }
 
     private defineSpacer() {
-        if(window.innerWidth <= 700) {
+        if (window.innerWidth <= 700) {
             this.swSpacer("horizontal");
         } else {
             this.swSpacer("vertical");
         }
     }
 
-    private onSearch(text: string){
-        if(text.length < 1) return;
+    private onSearch(text: string) {
+        if (text.length < 1) return;
         this.clearApisRunning();
 
         this.apiRest = new RequestSearch(text);
@@ -195,20 +193,20 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
         this.apiRest.startLoad();
     }
 
-    private renderListRestaurant(restaurantItem: IRestaurantItem[]){
+    private renderListRestaurant(restaurantItem: IRestaurantItem[]) {
         this.restaurantList.render(restaurantItem);
-    } 
+    }
 
     private clearApisRunning() {
-        if(this.apiRest != null && this.apiRest.isRunning){
+        if (this.apiRest != null && this.apiRest.isRunning) {
             //remove the current callbacks to prevent updating
             this.apiRest.callbacks = null;
             this.apiRest = null;
         }
     }
 
-    private swSpacer(str: 'horizontal' | 'vertical'){
-        switch(str){
+    private swSpacer(str: 'horizontal' | 'vertical') {
+        switch (str) {
             case "horizontal":
                 this.spacerLine.attrs = spacerAttrs[1]
                 break;
@@ -217,36 +215,37 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
         }
     }
 
-    private hideShow(stateUI: "loading" | "success" | "error-offline" | "search-unavailable"){
-        switch(stateUI){
-            case "loading":{
-                $(this.errorPage).hide();
-                $(this.restaurantList).hide();
-                $(this.shimmerLoadingView).show();
+    private hideShow(stateUI: "loading" | "success" | "error-offline" | "search-unavailable") {
+        switch (stateUI) {
+            case "loading": {
+                Util.hide(this.errorPage);
+                Util.hide(this.restaurantList);
+                Util.show(this.shimmerLoadingView);
                 break;
             }
-            case "success":{
-                $(this.errorPage).hide();
-                $(this.restaurantList).show();
-                $(this.shimmerLoadingView).hide();
+            case "success": {
+
+                Util.hide(this.errorPage);
+                Util.show(this.restaurantList);
+                Util.hide(this.shimmerLoadingView);
                 break;
             }
-            case "error-offline":{
+            case "error-offline": {
                 this.errorPage.errorType = AvailableTypes.offline;
                 this.errorPage.render();
 
-                $(this.errorPage).show();
-                $(this.restaurantList).hide();
-                $(this.shimmerLoadingView).hide();
+                Util.show(this.errorPage);
+                Util.hide(this.restaurantList);
+                Util.hide(this.shimmerLoadingView);
                 break;
             }
-            case "search-unavailable":{
+            case "search-unavailable": {
                 this.errorPage.errorType = AvailableTypes.searchNotFound;
                 this.errorPage.render();
 
-                $(this.errorPage).show();
-                $(this.restaurantList).hide();
-                $(this.shimmerLoadingView).hide();
+                Util.show(this.errorPage);
+                Util.hide(this.restaurantList);
+                Util.hide(this.shimmerLoadingView);
                 break;
             }
         }

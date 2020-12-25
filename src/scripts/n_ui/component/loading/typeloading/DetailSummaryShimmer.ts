@@ -2,8 +2,10 @@
 import ShimmerLoading, { ShimmerViews } from "../ShimmerLoading";
 
 export default class DetailSummaryShimmer implements ShimmerViews {
-    private views: HTMLElement = $(`
-        <div class="summary-container">
+    private views: HTMLElement = (() => {
+        const parent = document.createElement("div");
+        parent.classList.add("summary-container");
+        parent.innerHTML = `
             <div class="summary-image br">
                 <div class="image-bg br animate"></div>
             </div>
@@ -20,10 +22,9 @@ export default class DetailSummaryShimmer implements ShimmerViews {
                 </div>
                 <div class="comment animate w80"></div>
             </div>
-        </div>
-    
-    `)[0];
-    
+        `;
+        return parent;
+    })();
     getViews(container: ShimmerLoading): HTMLElement {
         return this.views;
     }

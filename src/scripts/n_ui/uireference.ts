@@ -1,5 +1,4 @@
 import "./application/application";
-//import "./activity/base/BaseActivity";
 import "./activity/allactivity"
 
 // fragments

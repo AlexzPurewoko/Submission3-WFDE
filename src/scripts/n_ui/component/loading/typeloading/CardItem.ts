@@ -2,11 +2,13 @@
 import ShimmerLoading, {ShimmerViews} from "../ShimmerLoading";
 export default class CardItem implements ShimmerViews {
     
-    private views : HTMLElement = $(`
-        <div class="br">
-            <div class="image-bg br animate"></div>
-        </div>
-    `)[0];
+    private views : HTMLElement = (() => {
+        const parent = document.createElement("div");
+        parent.classList.add("br");
+        parent.innerHTML = `<div class="image-bg br animate"></div>`;
+        return parent;
+    })();
+    
     getViews(_: ShimmerLoading): HTMLElement {
         return this.views;
     }

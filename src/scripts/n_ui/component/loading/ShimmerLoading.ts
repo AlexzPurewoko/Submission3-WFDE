@@ -1,4 +1,5 @@
 import "../../../../styles/n_sass/loading/shimmer-loading.sass";
+import { Util } from "../../../n_utils/util";
 export interface ShimmerViews {
     getViews(container: ShimmerLoading) : HTMLElement
 }
@@ -18,11 +19,11 @@ class ShimmerLoading extends HTMLElement {
     show(): void {
         if(!this._views) return;
 
-        this.setAttribute("display", "initial");
+        Util.show(this);
     }
 
     pause(): void {
-        this.setAttribute("display", "none")
+        Util.hide(this);
     }
 
     destroy(): void {

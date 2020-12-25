@@ -36,21 +36,12 @@ module.exports = {
       {
         test:/\.css$/i,
         use : [
-          // {
-          //   loader: MiniCssExtractPlugin.loader
-          // }
           'style-loader'
           , 'css-loader']
       },
       {
         test:/\.(sa|sc)ss$/i,
         use : [
-          // {
-          //   loader: MiniCssExtractPlugin.loader,
-          //   options: {
-          //     publicPath: '/styles/'
-          //   }
-          // }
           'style-loader'
           , 'css-loader', {
             loader: 'sass-loader',
@@ -79,22 +70,8 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.ProvidePlugin({
-      $ : 'jquery',
-      jQuery: 'jquery'
-    }),
-
-    // new MiniCssExtractPlugin({
-    //   filename: 'css/[name]-[hash].style.css',
-    //   chunkFilename: '[name]-[hash].style.css'
-    // }),
-
-    // new PurgeCSSPlugin({
-    //   paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
-    // }),
-
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/templates/n_index.html'),
+      template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
       favicon: "./src/public/images/icons/restaurant-icon.svg",
       minify: {

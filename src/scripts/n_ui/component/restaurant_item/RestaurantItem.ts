@@ -76,11 +76,11 @@ class RestaurantItem extends HTMLElement {
             this._cb(this, this._data)
         });
 
-        $(subjectClick).on("keypress", (e) => {
+        (<HTMLElement> subjectClick).onkeypress = (e) => {
             if(e.keyCode === 13){
                 this._cb(this, this._data)
             }
-        })
+        };
 
     }
 }

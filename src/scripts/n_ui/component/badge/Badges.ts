@@ -43,11 +43,9 @@ class Badges extends HTMLElement {
         if(!this._badgeOption) return;
         
         this.querySelectorAll("span.badge-item").forEach((elm : HTMLElement) => {
-            $(elm).css({
-                "color": this._badgeOption.color,
-                "background-color": this._badgeOption.bgColor,
-                "border-color": this._badgeOption.borderColor 
-            });
+            elm.style.color = this._badgeOption.color;
+            elm.style.backgroundColor = this._badgeOption.bgColor;
+            elm.style.borderColor = this._badgeOption.borderColor;
         })
     }
 }

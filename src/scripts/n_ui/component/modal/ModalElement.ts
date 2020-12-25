@@ -1,4 +1,5 @@
 import "../../../../styles/n_sass/modal/modal.sass"
+import { Util } from "../../../n_utils/util";
 
 class ModalElement extends HTMLElement {
     private _content = ""; // the content of modal, written in html
@@ -18,7 +19,7 @@ class ModalElement extends HTMLElement {
     }
 
     toggleModal(): void{
-        $(this._modal).fadeIn("fast");
+        Util.fadeIn(this._modal, 300);
         this._isShowUp = true;
     }
     render(): void {
@@ -59,8 +60,7 @@ class ModalElement extends HTMLElement {
     }
 
     private closeModal() {
-        $(this._modal).fadeOut("fast");
-        //this._modal.style.display = "none";
+        Util.fadeOut(this._modal, 300);
         this._isShowUp = false;
     }
 

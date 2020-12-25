@@ -1,9 +1,8 @@
-import { toPlainObject } from "lodash";
 import "../../../../styles/n_sass/images/rounded-images.sass";
+import { Util } from "../../../n_utils/util";
 
 export interface RImageAttrs {
-    readonly attrs?: Record<string, unknown>;
-    readonly css?: Record<string, unknown>;
+    readonly css?: any;
     readonly useWebp?: boolean;
     readonly srcWebp?: string;
     readonly src: string;
@@ -45,14 +44,11 @@ class RoundedImages extends HTMLElement {
 
     private implementAttrs() {
         const imgObj = this.querySelector("img");
-        if(this._imageAttrs.attrs)
-            $(imgObj).attr(this._imageAttrs.attrs);
+
         if(this._imageAttrs.css){
-            $(imgObj).css(toPlainObject(this._imageAttrs.css));
-            $(imgObj.parentElement).css({
-                "max-width": "unset",
-                "width": "fit-content"
-            })
+            imgObj.style.cssText = Util.toCssText(this._imageAttrs.css);
+            imgObj.parentElement.style.maxWidth = "unset";
+            imgObj.parentElement.style.width = "fit-content";
         }
 
     }
