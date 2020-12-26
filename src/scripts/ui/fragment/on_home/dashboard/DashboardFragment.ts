@@ -83,7 +83,7 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
     }
 
     onResumed(): void {
-        // this.apiRest.startLoad();
+        this.apiRest.startLoad();
         this.homeHero.resumeAnim();
     }
 
@@ -105,6 +105,7 @@ class DashboardFragment extends Fragment implements ApiCallbacks {
                 break;
             case GeneralCb.MESSAGE_ONSCROLL: {
                 this.checkAndFixedTopSearchTitles();
+                this.restaurantList.checkScroll();
             }
         }
     }

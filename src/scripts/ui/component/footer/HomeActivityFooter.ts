@@ -68,7 +68,7 @@ class HomeActivityFooter extends HTMLElement {
             // switch on
         target.classList.add("footer-nav-item-active");
         this._cb(this, target.getAttribute("data-target"));
-        target.style.color = "#fff";
+        target.style.color = "rgb(72 4 4)";
     }
 
     private switchOffAll(childrens: HTMLCollection){

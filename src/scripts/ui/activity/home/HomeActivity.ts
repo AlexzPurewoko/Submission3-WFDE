@@ -27,6 +27,13 @@ class HomeActivity extends BaseActivity {
         ["about", false]
     ]);
 
+    private configureFragment = new Map<string, string>([
+        ["dashboard", "dashboard-fragment"],
+        ["about", "about-fragment"],
+        ["favorite", "favorite-fragment"],
+
+    ]);
+
     onCreated(params: any[]): void {
         super.onCreated(params);
         this.innerHTML = this.renderPage();
@@ -38,14 +45,7 @@ class HomeActivity extends BaseActivity {
         this._homeFooter.callback = this._navItemCb;
         this._homeHeader.render();
         this._homeFooter.render();
-
-        // add all fragment to layout
-        const mainElement = this.querySelector("main");
-        this.fragmentAdapter.attachFragment("dashboard", "dashboard-fragment", mainElement);
-        // this.fragmentAdapter.attachFragment("favorite", "favorite-fragment", mainElement);
-        // this.fragmentAdapter.attachFragment("about", "about-fragment", mainElement);
-
-
+        
         this._homeFooter.toggleActiveItem("dashboard");
         this.skipContentImpl();
 
@@ -90,7 +90,9 @@ class HomeActivity extends BaseActivity {
                 this.mapActiveFragment.set(key, !val);
             }
         });
-
+        if(!this.fragmentAdapter.getFragment(navRef)) {
+            this.fragmentAdapter.attachFragment(navRef, this.configureFragment.get(navRef), this.querySelector("main"));
+        }
         this.fragmentAdapter.showFragment(navRef);
 
         this.mapActiveFragment.set(navRef, true);
@@ -107,7 +109,7 @@ class HomeActivity extends BaseActivity {
             const referrer = target.getAttribute("href");
             const count = parseInt(target.getAttribute("data-count"));
 
-            let targetElement: HTMLElement = null;//<HTMLElement> this.querySelector(referrer);
+            let targetElement: HTMLElement = null;
             for(let x = 1; x <= count; x++){
                 const elm = <HTMLElement> this.querySelector(`${referrer}${x}`);
                 const a = Util.isVisible(elm.parentElement);

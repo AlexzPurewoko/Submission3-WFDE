@@ -19,7 +19,7 @@ class MainApplication extends HTMLElement {
     private activityBackStack: BackStackProperty[] = [];
     private currentHash = ""
 
-    private hasScrollLocked = false;
+    // private hasScrollLocked = false;
     private hasResizeLocked = false;
 
     private listenerReference = {
@@ -140,13 +140,8 @@ class MainApplication extends HTMLElement {
     // event listener
 
     private onScrollChange(event: Event){
-        if(!this.currentActivityRef && this.hasScrollLocked) return;
         const lifecycleCb = <LifecycleCallback> this.currentActivityRef;
         lifecycleCb.onScrollEvent(event);
-        this.hasScrollLocked = true;
-        setTimeout(() => {
-            this.hasScrollLocked = false;
-        }, 600);
     }
     private onResizeCallback(event: Event) {
         if(!this.currentActivityRef && this.hasResizeLocked) return;
@@ -160,6 +155,10 @@ class MainApplication extends HTMLElement {
 
     private onHashChanged() {
         const hash = window.location.hash.slice(1);
+        if(hash === ''){
+            const homepageInfo = this._manifest.activities.get(this._manifest.homepage);
+            this.moveToNextActivity(homepageInfo, null);
+        }
         const urlParts = hash.split("/");
 
         const lenBackStack = this.activityBackStack.length;

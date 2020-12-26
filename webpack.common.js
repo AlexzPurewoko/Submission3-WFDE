@@ -95,7 +95,8 @@ module.exports = {
         attribute: 'crossorigin',
         value: 'anonymous'
       },
-      defaultAttribute: 'defer',
+      sync: ['main.js', 'mainStyle.js'],
+      defaultAttribute: 'async',
       preload: {
         test: /\.js$/
       }

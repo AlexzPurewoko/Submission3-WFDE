@@ -7,6 +7,9 @@
     display: inline-block
     border-radius: 5px
 
+    rating-component > i
+        font-size: 18px
+
 .card-item-container:focus 
     outline-color: utils.$base_color
 
@@ -38,19 +41,19 @@
     outline-color: utils.$base_color
     outline-width: 4px
 
-@mixin titleWithDifferentColor($color)
-    font-size: 16pt
+@mixin titleWithDifferentColor($color, $fontsize)
+    font-size: $fontsize
     font-family: 'Quicksand', Arial, Helvetica, sans-serif
     font-weight: medium
     color: $color
     
 // Item styling
 .item-header-title
-    @include titleWithDifferentColor(white)
+    @include titleWithDifferentColor(white, 14pt)
     margin-bottom: 4px
 
 item-restaurant > modal-element h1
-    @include titleWithDifferentColor(black)
+    @include titleWithDifferentColor(black, 16pt)
     margin-bottom: 8px
 
 item-restaurant > modal-element p

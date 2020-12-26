@@ -9,10 +9,6 @@ let afterDOM = function () {
 
     const application =<MainApplication> document.querySelector('application-main');
     application.runApplication();
-
-    // document.querySelector('#placeholder-content').remove();
-    // document.querySelector('#style-placeholder').remove();
-    Util.show(application);
 }
 
 document.addEventListener("DOMContentLoaded", afterDOM);

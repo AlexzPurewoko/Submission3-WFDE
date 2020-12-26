@@ -6,21 +6,50 @@ import RestaurantItem from "../restaurant_item/RestaurantItem";
 class RestaurantList extends HTMLElement {
 
     private _cb: RestaurantItemClickCb = null;
+    private treshold = 500;
+    private pos: number = 0;
+    private totalData: number = 0;
+    private step: number = 6;
+    private lastScroll: number = 0;
+    private data: IRestaurantItem[] = [];
 
-    set onItemClick(cb: RestaurantItemClickCb){
+
+    set onItemClick(cb: RestaurantItemClickCb) {
         this._cb = cb;
     }
 
     render(data: IRestaurantItem[]): void {
         this.innerHTML = '';
-        data.forEach((itemValue: IRestaurantItem) => {
-            const createdElement = <RestaurantItem> document.createElement("item-restaurant");
-            createdElement.data = itemValue;
-            createdElement.onClick = (v: RestaurantItem, d: IRestaurantItem) => this._cb(v, d);
-            createdElement.render();
+        this.pos = 0;
+        this.totalData = data.length;
+        this.data = data;
+        this.renderPartial();
+    }
 
-            this.append(createdElement);
-        });
+    private applyRender(item: IRestaurantItem): void {
+        const createdElement = <RestaurantItem>document.createElement("item-restaurant");
+        createdElement.data = item;
+        createdElement.onClick = (v: RestaurantItem, d: IRestaurantItem) => this._cb(v, d);
+        createdElement.render();
+        this.append(createdElement);
+    }
+
+    private renderPartial(): void {
+        let pos = 0;
+        while(this.pos < this.data.length && pos < this.step ){
+            this.applyRender(this.data[this.pos]);
+            pos++;
+            this.pos++;
+        }
+    }
+
+    checkScroll() {
+        const scroll = window.pageYOffset;
+        
+        if ((scroll - this.lastScroll) > 0 && scroll >= this.offsetHeight - this.treshold) {
+            this.renderPartial();
+        }
+        this.lastScroll = scroll
     }
 }
 

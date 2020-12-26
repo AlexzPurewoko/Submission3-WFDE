@@ -8,25 +8,40 @@ restaurant-list
         grid-template-columns: 300px
         padding: 25px
 
-        .card-item-container > img
-            width: 100%
-            height: 210px
+        .card-item-container
+            img
+                width: 100%
+                height: 210px
+
+
 
 @media screen and(min-width: 601px)
     restaurant-list
         grid-template-columns: 520px
 
-        .card-item-container > img
-            width: 520px
-            height: 325px
+        .card-item-container 
+            img
+                width: 520px
+                height: 325px
+
+            .item-header-title
+                font-size: 18pt
+            rating-component > i
+                font-size: 24px
 
 @media screen and(min-width: 695px)
     restaurant-list
         grid-template-columns: 310px 310px
 
-        .card-item-container > img
-            width: 310px
-            height: 210px
+        .card-item-container 
+            img
+                width: 310px
+                height: 210px
+
+            .item-header-title
+                font-size: 14pt
+            rating-component > i
+                font-size: 18px
 
 @media screen and(min-width: 1005px)
     restaurant-list
