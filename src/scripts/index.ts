@@ -10,8 +10,8 @@ let afterDOM = function () {
     const application =<MainApplication> document.querySelector('application-main');
     application.runApplication();
 
-    document.querySelector('#placeholder-content').remove();
-    document.querySelector('#style-placeholder').remove();
+    // document.querySelector('#placeholder-content').remove();
+    // document.querySelector('#style-placeholder').remove();
     Util.show(application);
 }
 
