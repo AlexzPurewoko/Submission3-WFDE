@@ -11,12 +11,14 @@ const ImageminWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'src/scripts/n_index.ts'),
-    actSw: path.resolve(__dirname, "src/scripts/n_sw.ts")
+    main: path.resolve(__dirname, 'src/scripts/index.ts'),
+    actSw: path.resolve(__dirname, "src/scripts/sw.ts"),
+    mainStyle: path.resolve(__dirname, "src/scripts/styles.ts"),
+    materialIcons: path.resolve(__dirname, 'src/scripts/materialicons.ts')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'scripts/[name]-[hash].app.js',
+    filename: 'scripts/[name].js',
   },
   optimization: {
     splitChunks: {
@@ -74,6 +76,7 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
       favicon: "./src/public/images/icons/restaurant-icon.svg",
+      // chunks: ['main', 'actSw', 'mainStyle'],
       minify: {
         html5: true,
         collapseWhitespace: true,

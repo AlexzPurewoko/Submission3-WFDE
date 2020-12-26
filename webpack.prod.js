@@ -9,7 +9,6 @@ module.exports = merge(common, {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      maxSize: 65536
     }
   },
   devtool: 'none',
@@ -34,7 +33,7 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new BundleAnalyzer(),
+    // new BundleAnalyzer(),
 
     new BrotliPlugin({
 			test: /\.(js)$/

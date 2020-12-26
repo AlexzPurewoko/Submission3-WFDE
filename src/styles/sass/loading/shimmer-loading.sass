@@ -1,0 +1,69 @@
+@use "../base/utils"
+@use "./detailsummary-plugin"
+
+shimmer-loading
+    .br
+        border-radius: 8px
+
+    .w80
+        width: 80%
+
+    .card
+        border: 2px solid #fff
+        @include utils.boxShadowMethod(0 0 10px 0 #a9a9a9)
+        padding: 30px 40px
+        margin: 50px auto
+
+    .wrapper
+        width: 0
+        animation: shimmer-fullView 0.5s forwards cubic-bezier(0.250, 0.460, 0.450, 0.940)
+    
+    .profilePic 
+        height: 65px
+        width: 65px
+        border-radius: 50%
+
+    .comment 
+        height: 10px
+        margin-top: 20px
+
+
+    .image-bg 
+        height: 250px
+        width: 100%
+
+    .content-side 
+        position: absolute
+        bottom: 0
+        width:100%
+    
+    .title 
+        height: 10px
+        margin-top: 20px
+        width: 50%
+        
+
+    .badges-shimmer
+        height: 25px
+        width: 60px
+        margin-top: 20px
+    
+    .animate 
+        // animation : shimmer 2s infinite linear
+        background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%)
+        background-size: 1000px 100%
+
+    @include detailsummary-plugin.detailPlugin()
+    @include detailsummary-plugin.detailPluginMedia()
+    
+
+// KeyFrames
+@keyframes  shimmer
+    0%
+        background-position: -1000px 0
+    100%
+        background-position: 1000px 0
+
+@keyframes shimmer-fullView
+    100%
+        width: 100%
