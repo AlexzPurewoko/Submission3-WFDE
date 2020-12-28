@@ -54,7 +54,7 @@ abstract class DatabaseHelper {
     // return boolean
     async addData(storeName: any, data: any): Promise<boolean> {
         if(!this._db) return false;
-
+        if(data === null) return false;
         try {
             const db = await this._db;
             const t = db.transaction(storeName, 'readwrite');
@@ -87,7 +87,7 @@ abstract class DatabaseHelper {
 
     // update data
     // return boolean which indicates success or not
-    async setData(storeName: any, keyData: string, newValue: any): Promise<boolean>{
+    async setData(storeName: any, keyData: any, newValue: any): Promise<boolean>{
         if(!this._db) return false;
 
         try {
@@ -114,12 +114,21 @@ abstract class DatabaseHelper {
 
     // delete the data
     // returns the boolean
-    async deleteData(storeName: any, keyData: string): Promise<boolean>{
+    async deleteData(storeName: any, keyData: any): Promise<boolean>{
         if(!this._db) return false;
 
         try {
             const db = await this._db;
             const t = db.transaction(storeName, 'readwrite');
+
+            let isAny = false;
+            try {
+                const a = await t.store.get(keyData);
+                isAny = !(a === undefined || a === null);
+            } catch(e){
+                isAny = false;
+            }
+            if(!isAny) return false;
             await t.store.delete(keyData);
             this._notifyAllCallbacks();
             return true;
@@ -130,7 +139,7 @@ abstract class DatabaseHelper {
     }
 
     // get the data by KEY (primaryKEY)
-    async getByKey(storeName: any, keyData: string): Promise<any>{
+    async getByKey(storeName: any, keyData: any): Promise<any>{
         if(!this._db) return null;
 
         try {
@@ -161,7 +170,7 @@ abstract class DatabaseHelper {
     }
 
     // return boolean
-    async anyData(storeName: any, keyData: string) : Promise<boolean>{
+    async anyData(storeName: any, keyData: any) : Promise<boolean>{
         const q = await this.getByKey(storeName, keyData);
         return  q ? true:false;
     }

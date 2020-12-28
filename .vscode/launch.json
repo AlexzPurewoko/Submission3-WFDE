@@ -36,6 +36,17 @@
                 "webpack:///../*": "${webRoot}/js-src/*",         // unsure how/why webpack generates ../links.js
                 "webpack:///*":     "*"                           // a default, catch everything else
             }
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach Karma Chrome",
+            "address": "localhost",
+            "port": 9334,
+            "pathMapping": {
+                "/": "${workspaceRoot}/",
+                "/base/": "${workspaceRoot}/"
+            }
         }
     ]
 }

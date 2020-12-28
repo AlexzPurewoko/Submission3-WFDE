@@ -2,10 +2,17 @@ import { IRestaurantDetailResponse } from "../data/detail/IRestaurantDetailRespo
 import { IRestaurantResponse } from "../data/lists/IRestaurantResponse";
 import { IResultReview } from "../data/review/IResultReview";
 import { ISearchResponse } from "../data/search/ISearchResponse";
+import {ITestResponse} from "../data/test/ITestResponse";
 
-export type ApiAllResponse = IRestaurantDetailResponse | IRestaurantResponse | IResultReview | ISearchResponse;
+export type ApiAllResponse = IRestaurantDetailResponse | IRestaurantResponse | IResultReview | ISearchResponse | ITestResponse;
+
+interface ErrorStatus {
+    status: number,
+    message: string
+}
+
 export interface IAllResponse {
     readonly isSuccess: boolean,
-    readonly error: any,
+    readonly error: ErrorStatus | any,
     readonly response: ApiAllResponse
 }

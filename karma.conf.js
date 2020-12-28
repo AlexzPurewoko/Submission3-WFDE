@@ -1,3 +1,4 @@
+const webpackTest = require('./webpack.test');
 // Karma configuration
 // Generated on Fri Jul 03 2020 20:15:52 GMT+0700 (Western Indonesia Time)
 module.exports = function (config) {
@@ -12,7 +13,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'specs/**/*Spec.js',
+      'test/unit_test/**/*test.ts',
     ],
 
     // list of files / patterns to exclude
@@ -21,17 +22,10 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'specs/**/*Spec.js': ['webpack', 'sourcemap'],
+      '**/*.ts': ['webpack'],
     },
 
-    webpack: {
-      // karma watches the test entry points
-      // (you don't need to specify the entry option)
-      // webpack watches dependencies
-      // webpack configuration
-      devtool: 'inline-source-map',
-      mode: 'development',
-    },
+    webpack: webpackTest,
 
     webpackMiddleware: {
       // webpack-dev-middleware configuration
@@ -42,7 +36,10 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    // reporters: ['spec'],
     reporters: ['progress'],
+
+    browsers: ["ChromeHeadless"],
 
     // web server port
     port: 9876,
@@ -60,14 +57,18 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    // browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
+
+    client: {
+      captureConsole: true
+    }
   });
 };
