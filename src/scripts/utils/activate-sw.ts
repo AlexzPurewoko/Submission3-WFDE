@@ -1,3 +1,17 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ * 
+ */
+
+/**
+ * @function
+ * @description
+ * 
+ * Activate/Deactivate a service worker
+ * 
+ * @param activate true enable service worker, and false if disable it
+ */
+
 export const activateServiceWorker = (activate : boolean) : void => {
     if(!activate) return;
 

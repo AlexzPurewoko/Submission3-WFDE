@@ -1,14 +1,63 @@
-import { IgnorePlugin } from "webpack";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ * 
+ */
 
+
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+// regex for matching 'display: none'
 const regexDisplayNone = /(display\s*:\s*none\s*(;)?)/;
+
+// regex for matching opacity CSS property
 const regexOpacity = /opacity\s*:\s*([0-9]+[,.]?[0-9]*([\/][0-9]+[,.]?[0-9]*)*)\s*;/;
+
+/**
+ * Provides a helper method for being used on another class
+ */
 export const Util = {
+
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().height().
+     * Which get the rendered height of any html element.
+     * 
+     * @param elm the html element
+     * 
+     * @returns the floating point height in pixels
+     */
     computeHeight: (elm: Element): number => {
         return parseFloat(getComputedStyle(elm, null).height.replace("px", ""))
     },
+
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().hide().
+     * Which is hiding the html element from layout.
+     * 
+     * @param elm the html element
+     * 
+     * @returns 
+     */
     hide: (elm: HTMLElement): void => {
         elm.style.display = 'none';
     },
+
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().show().
+     * Which is showing the hiding of html element from layout.
+     * 
+     * @param elm the html element
+     * 
+     * @returns 
+     */
     show: (elm: HTMLElement): void => {
         const styleAttrs = elm.getAttribute("style");
         if (styleAttrs != null) {
@@ -16,12 +65,27 @@ export const Util = {
             elm.setAttribute("style", replaced);
         }
     },
-    isVisible: (elm: HTMLElement, visibilityMode: boolean = false): boolean => {
+
+    /**
+     * @function
+     * @description
+     * 
+     * Check existance of a HTML element in layout
+     * 
+     * @param elm the html element
+     * @param visibilityMode if true it will watch on display property and otherwise is watching od visibility property
+     * 
+     * @returns true if visible or false if hidden
+     */
+    isVisible: (elm: HTMLElement, visibilityMode = false): boolean => {
         const computed = getComputedStyle(elm);
-        console.log("display: " + computed.visibility);
         return !visibilityMode ? (computed.display !== 'none') : (computed.visibility === 'visible');
     },
 
+    /**
+     * Must be called when initiating App..
+     * You can add other confg here
+     */
     initProperty: (): void => {
         if (!Object.keys) Object.keys = function (o: any) {
             if (o !== Object(o))
@@ -32,6 +96,16 @@ export const Util = {
         }
     },
 
+    /**
+     * @function
+     * @description
+     * 
+     * Convert data object to plain text
+     * 
+     * @param obj the data object
+     * 
+     * @returns plain text object
+     */
     toCssText: (obj: any): string => {
         let str = "";
         const keys = Object.keys(obj);
@@ -42,6 +116,18 @@ export const Util = {
         return str;
     },
 
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().slideUp().
+     * Which is perform fading in the html element and show it
+     * 
+     * @param elm the html element
+     * @param duration the operation duration in milliseconds. Default is 500 ms
+     * 
+     * @returns 
+     */
     fadeIn: (elm: HTMLElement, time: number): void => {
         const step = 1 / (time / 20);
         elm.style.opacity = "0";
@@ -62,6 +148,18 @@ export const Util = {
         runner();
     },
 
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().fadeOut().
+     * Which is perform fading out the html and hide.
+     * 
+     * @param elm the html element
+     * @param duration the operation duration in milliseconds. Default is 500 ms
+     * 
+     * @returns 
+     */
     fadeOut: (elm: HTMLElement, time: number, after: () => void = null): void => {
         const step = 1 / (time / 20);
         elm.style.opacity = "1";
@@ -86,7 +184,19 @@ export const Util = {
         runner();
     },
 
-    slideUp: (target: HTMLElement, duration : number = 500): void => {
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().slideUp().
+     * Which is perform slide up the html element and hide it
+     * 
+     * @param elm the html element
+     * @param duration the operation duration in milliseconds. Default is 500 ms
+     * 
+     * @returns 
+     */
+    slideUp: (target: HTMLElement, duration = 500): void => {
         target.style.transitionProperty = 'height, margin, padding';
         target.style.transitionDuration = duration + 'ms';
         target.style.boxSizing = 'border-box';
@@ -111,7 +221,19 @@ export const Util = {
         }, duration);
     },
 
-    slideDown: (target: HTMLElement, duration: number = 500): void => {
+    /**
+     * @function
+     * @description
+     * 
+     * As replacement from jquery, this is equal to $().slideDown().
+     * Which is perform swipe the html element down and open.
+     * 
+     * @param elm the html element
+     * @param duration the operation duration in milliseconds. Default is 500 ms
+     * 
+     * @returns 
+     */
+    slideDown: (target: HTMLElement, duration = 500): void => {
         target.style.removeProperty('display');
         let display = window.getComputedStyle(target).display;
         if (display === 'none') display = 'block';
@@ -138,9 +260,5 @@ export const Util = {
           target.style.removeProperty('transition-duration');
           target.style.removeProperty('transition-property');
         }, duration);
-    },
-
-    findMaxHeight: (elm: HTMLElement): number => {
-        return parseInt(elm.style.maxHeight.replace("px", ""));
     }
 }
