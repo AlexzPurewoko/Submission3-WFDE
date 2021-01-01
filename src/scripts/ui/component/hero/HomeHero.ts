@@ -29,8 +29,8 @@ class HomeHero extends HTMLElement {
             <div class="hero__container">
                 <picture> 
                     <source media="(max-width: 400px)" srcset="/images/heros/hero-image_1-small.webp">
-                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_1-medium.webp">
-                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_1-large.webp">
+                    <source media="(max-width: 559px)" srcset="/images/heros/hero-image_1-medium.webp">
+                    <source media="(max-width: 669px)" srcset="/images/heros/hero-image_1-large.webp">
                     <source media="(min-width: 700px)" srcset="/images/heros/hero-image_1-extra.webp">
                     <img 
                         id='hero-image_1'
@@ -40,8 +40,8 @@ class HomeHero extends HTMLElement {
                 </picture>
                 <picture> 
                     <source media="(max-width: 400px)" srcset="/images/heros/hero-image_2-small.webp">
-                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_2-medium.webp">
-                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_2-large.webp">
+                    <source media="(max-width: 559px)" srcset="/images/heros/hero-image_2-medium.webp">
+                    <source media="(max-width: 669px)" srcset="/images/heros/hero-image_2-large.webp">
                     <source media="(min-width: 700px)" srcset="/images/heros/hero-image_2-extra.webp">
                     <img 
                         id='hero-image_2'
@@ -52,8 +52,8 @@ class HomeHero extends HTMLElement {
                 </picture>
                 <picture> 
                     <source media="(max-width: 400px)" srcset="/images/heros/hero-image_3-small.webp">
-                    <source media="(min-width: 401px)" srcset="/images/heros/hero-image_3-medium.webp">
-                    <source media="(min-width: 560px)" srcset="/images/heros/hero-image_3-large.webp">
+                    <source media="(max-width: 559px)" srcset="/images/heros/hero-image_3-medium.webp">
+                    <source media="(max-width: 669px)" srcset="/images/heros/hero-image_3-large.webp">
                     <source media="(min-width: 700px)" srcset="/images/heros/hero-image_3-extra.webp">
                     <img 
                         id='hero-image_3'

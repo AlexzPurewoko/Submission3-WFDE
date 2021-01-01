@@ -5,12 +5,14 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js']
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
                 test: /\.ts$/,
                 loader: 'ts-loader',
                 options: {
+                    configFile: 'tsconfig.webpack.json',
                     getCustomTransformers: program => ({
                         before: [
                             tsAutoMockTransformer(program, {

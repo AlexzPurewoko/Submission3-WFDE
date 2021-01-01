@@ -10,8 +10,8 @@ export const htmlLayout = `
         2014, I study more about programming. Now, I hava a skills on Android & Web Development, and have an enthusiasts 
         on IoT Technologies. Finally, thanks to Dicoding Indonesia that give me some class for upskilling :) 
         <div class="button-layout">
-            <button>${githubSvg}LinkedIn</button>
-            <button>${linkedInSvg}GitHub</button>
+            <button>${linkedInSvg}LinkedIn</button>
+            <button>${githubSvg}GitHub</button>
         </div>
     </div>
     

@@ -1,15 +1,10 @@
 import { createMock } from "ts-auto-mock";
 import ApiCallbacks from "../../../../src/scripts/logic/api/modules/base/ApiCallbacks";
-import GetAllRestaurants from "../../../../src/scripts/logic/api/modules/list/GetAllRestaurants";
 
 import "jasmine-ajax";
 import {fetch as fetchPolyfill} from "whatwg-fetch";
 import { endpoint } from "../../../../src/scripts/logic/api/endpoint/endpoint";
-import { ListResto } from "./data/list_resto";
-import { IRestaurantResponse } from "../../../../src/scripts/logic/api/data/lists/IRestaurantResponse";
 import { IAllResponse } from "../../../../src/scripts/logic/api/allresponse/IAllResponse";
-import { IRestaurantItem } from "../../../../src/scripts/logic/api/data/lists/IRestaurantItem";
-import { ImageSize } from "../../../../src/scripts/logic/api/endpoint/ImageSize";
 import PostReview from "../../../../src/scripts/logic/api/modules/reviewResult/PostReview";
 import { IPostReview } from "../../../../src/scripts/logic/api/data/review/IPostReview";
 import { ResultReview } from "./data/result_review";
@@ -48,7 +43,6 @@ describe("PostReview class logic test", () => {
 
     it('should return list customerReviews if success adding data', async () => {
 
-        // spyOnProperty(dataMock.restaurant, 'pictureId');
         jasmine.Ajax.stubRequest(endpoint.postReview()).andReturn({
             status: 200,
             contentType: 'application/json',

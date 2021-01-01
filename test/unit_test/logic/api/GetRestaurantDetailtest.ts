@@ -5,7 +5,6 @@ import { IRestaurantDetailResponse } from '../../../../src/scripts/logic/api/dat
 import { endpoint } from '../../../../src/scripts/logic/api/endpoint/endpoint';
 import { ImageSize } from '../../../../src/scripts/logic/api/endpoint/ImageSize';
 import ApiCallbacks from '../../../../src/scripts/logic/api/modules/base/ApiCallbacks';
-import BaseApi from '../../../../src/scripts/logic/api/modules/base/BaseApi';
 import GetRestaurantDetail from '../../../../src/scripts/logic/api/modules/detail/GetRestaurantDetail';
 import { DetailResto } from './data/detail_resto';
 
@@ -38,8 +37,6 @@ describe("GetRestaurantDetail class logic test", () => {
 
     it('should match expected if status equal to 200', async () => {
 
-        // spyOnProperty(dataMock.restaurant, 'pictureId');
-        
         jasmine.Ajax.stubRequest(endpoint.detail(id)).andReturn({
             status: 200,
             contentType: 'application/json',

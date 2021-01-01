@@ -10,6 +10,7 @@ import { IRestaurantResponse } from "../../../../src/scripts/logic/api/data/list
 import { IAllResponse } from "../../../../src/scripts/logic/api/allresponse/IAllResponse";
 import { IRestaurantItem } from "../../../../src/scripts/logic/api/data/lists/IRestaurantItem";
 import { ImageSize } from "../../../../src/scripts/logic/api/endpoint/ImageSize";
+
 describe("GetRestaurantDetail class logic test", () => {
 
     let originalFetch: ((input: RequestInfo, init?: RequestInit) => Promise<Response>) & ((input: RequestInfo, init?: RequestInit) => Promise<Response>) ;
@@ -38,8 +39,6 @@ describe("GetRestaurantDetail class logic test", () => {
 
     it('should match expected if status equal to 200', async () => {
 
-        // spyOnProperty(dataMock.restaurant, 'pictureId');
-        
         jasmine.Ajax.stubRequest(endpoint.list()).andReturn({
             status: 200,
             contentType: 'application/json',

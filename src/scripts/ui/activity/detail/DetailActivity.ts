@@ -246,8 +246,7 @@ class DetailActivity extends BaseActivity implements ApiCallbacks{
                 // this feature (activityBack()) not available now...
                 // soon as posibble
                 // this.application.activityBack();
-
-                window.location.hash = "#";
+                if(!this.application.activityBack()) window.location.hash = "#";
             }
         }
     }

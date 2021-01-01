@@ -2,7 +2,7 @@
 import DatabaseHelper from "../../../logic/db/helper/DatabaseHelper";
 import Fragment, { GeneralCb } from "./Fragment";
 import { FragmentCallback } from "./FragmentCallback";
-import { FragmentManifest } from "./FragmentManifest";
+import { FragmentManifest as fgManifest} from "./FragmentManifest";
 
 export interface FgAdapterCallback {
     onNotify(fragmentTargetKey: string, key: string, value: any): void
@@ -14,14 +14,17 @@ export class FragmentAdapter {
     private _fragments: Map<string, Fragment> = new Map<string, Fragment>();
     private _referenceDOM: Map<string, HTMLElement> = new Map<string, HTMLElement>();
 
-    constructor(accessDb: DatabaseHelper, fgCbAdapter: FgAdapterCallback){
+    private fgManifest: string[];
+
+    constructor(accessDb: DatabaseHelper, fgCbAdapter: FgAdapterCallback, _fgManifest = fgManifest){
+        this.fgManifest = _fgManifest;
         this._accessDb = accessDb;
         this._fgAdapterCbRef = fgCbAdapter;
     }
     attachFragment(key: string, fragmentName: string, addTo: HTMLElement, argument: any = null): void{
-        const isAny = FragmentManifest.includes(fragmentName);
+        const isAny = this.fgManifest.includes(fragmentName);
         if(!isAny || this._fragments.has(key)) return;
-        
+        if(!addTo) return;
         const created = <Fragment> document.createElement(fragmentName);
 
         // initialize callbacks 
@@ -80,7 +83,7 @@ export class FragmentAdapter {
         this._fragments.get(fragmenTargetkey).onReceiveMessage(key, value);
     }
 
-    getTitileOf(fragmentKey: string): string{
+    getTitleOf(fragmentKey: string): string{
         if(!this._fragments.has(fragmentKey)) return null;
         return this._fragments.get(fragmentKey).titleFragment();
     }

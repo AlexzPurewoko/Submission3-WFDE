@@ -9,7 +9,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'karma-typescript'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -39,7 +39,16 @@ module.exports = function (config) {
     // reporters: ['spec'],
     reporters: ['progress'],
 
-    browsers: ["ChromeHeadless"],
+    // browsers: ["Chrome"],
+
+    browsers: ['ChromeDebugging'],
+
+    customLaunchers: {
+      ChromeDebugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9334']
+      }
+    },
 
     // web server port
     port: 9876,
@@ -61,7 +70,7 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultaneous

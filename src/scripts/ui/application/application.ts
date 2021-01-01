@@ -1,7 +1,7 @@
 import MainDatabase from "../../logic/db/MainDatabase";
 import BaseActivity from "../activity/base/BaseActivity";
 import { LifecycleCallback } from "./callback/LifecycleCallback";
-import { ActivityInfo, AppManifest } from "./manifest/AppManifest";
+import { ActivityInfo, AppManifest, appManifestImpl } from "./manifest/AppManifest";
 
 interface BackStackProperty {
     hashURI: string,
@@ -12,7 +12,7 @@ interface BackStackProperty {
 class MainApplication extends HTMLElement {
 
     private readonly _db : MainDatabase = null;
-    private readonly _manifest = AppManifest;
+    private _manifest : AppManifest= appManifestImpl;
 
     private currentActivityInfo: ActivityInfo = null;
     private currentActivityRef: BaseActivity = null;
@@ -33,11 +33,15 @@ class MainApplication extends HTMLElement {
         this._db = new MainDatabase();
     }
 
+    set manifest(manifest: AppManifest) {
+        this._manifest = manifest; 
+    }
+
     runApplication() : void {
         
         // we should check separately
         // if its empty, then start root/homepage.
-        
+        this.errorNoRoutes('hide');
         if(window.location.hash === "" || window.location.hash === "#"){
             const page = this._manifest.mode === "test" ? this._manifest.testPage : this._manifest.homepage;
             const homepageInfo = this._manifest.activities.get(page);
@@ -46,6 +50,11 @@ class MainApplication extends HTMLElement {
             const hashGet = window.location.hash.slice(1);
             const urlParams = hashGet.split("/");
 
+            if(!this._manifest.activities.has(urlParams[1])) {
+                this.errorNoRoutes('display');
+                throw Error('Cannot find the routes!');
+            }
+            
             const activityInfo = this._manifest.activities.get(urlParams[1]);
             const parameters = urlParams.slice(2, urlParams.length);
 
@@ -55,16 +64,20 @@ class MainApplication extends HTMLElement {
         window.onhashchange = this.listenerReference.hashChange;
         window.onscroll = this.listenerReference.onScroll;
         window.onresize = this.listenerReference.onResize; 
+        // document.addEventListener('resize', (e: Event) => {
+        //     this.listenerReference.onResize(e);
+        // })
     }
 
     // Preferred only for activity instance to ensures that they 
     // can move to previous activity
-    activityBack() : void {
+    activityBack() : boolean {
         const lastElement = this.getBackStackLastElement();
         if(!lastElement) {
-            return;
+            return false;
         }
         window.location.hash = '#' + lastElement.hashURI;
+        return true;
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -74,6 +87,15 @@ class MainApplication extends HTMLElement {
         window.onscroll = undefined;
         window.onresize = undefined;
     }
+
+    private errorNoRoutes(should: 'display' | 'hide') {
+        if(should === 'hide') {
+            const elm = this.querySelector("p#err-no-routes");
+            if(elm) elm.remove();
+        } else if(should === 'display'){
+            this.innerHTML = '<p id="err-no-routes">No routes to '+window.location.hash;
+        }
+    } 
 
     private getBackStackLastElement(): BackStackProperty {
         if(this.activityBackStack.length < 1) return null;
@@ -108,6 +130,8 @@ class MainApplication extends HTMLElement {
         this.currentActivityRef.onDestroy();
 
         this.applyActivity(currentStack.element, currentStack.activityInfo);
+
+        this.dispatchEvent(new Event('application:moveprev:activity'));
     }
 
     private moveToNextActivity(activityInfo: ActivityInfo, params: any[]){
@@ -120,11 +144,13 @@ class MainApplication extends HTMLElement {
 
             // call onPause for current activity
             this.currentActivityRef.onPaused();
+
         } else {
             this.activityBackStack = [];
         }
         // apply created activity to show
         this.applyActivity(actCreated, activityInfo);
+        this.dispatchEvent(new Event('application:movenext:activity'));
     }
 
     private pushToStack() {
@@ -142,23 +168,28 @@ class MainApplication extends HTMLElement {
     private onScrollChange(event: Event){
         const lifecycleCb = <LifecycleCallback> this.currentActivityRef;
         lifecycleCb.onScrollEvent(event);
+
+        setTimeout(() => {
+            this.dispatchEvent(new Event('application:scroll:app'));
+        });
     }
     private onResizeCallback(event: Event) {
-        if(!this.currentActivityRef && this.hasResizeLocked) return;
+        // if(!this.currentActivityRef && this.hasResizeLocked) return;
         const lifecycleCb = <LifecycleCallback> this.currentActivityRef;
         lifecycleCb.onResizeEvent(event);
-        this.hasResizeLocked = true;
+
         setTimeout(() => {
-            this.hasResizeLocked = false;
-        }, 600);
+            this.dispatchEvent(new Event('application:resize:app'));
+        });
+        
+        // this.hasResizeLocked = true;
+        // setTimeout(() => {
+        //     this.hasResizeLocked = false;
+        // }, 600);
     }
 
     private onHashChanged() {
         const hash = window.location.hash.slice(1);
-        if(hash === ''){
-            const homepageInfo = this._manifest.activities.get(this._manifest.homepage);
-            this.moveToNextActivity(homepageInfo, null);
-        }
         const urlParts = hash.split("/");
 
         const lenBackStack = this.activityBackStack.length;
@@ -169,6 +200,13 @@ class MainApplication extends HTMLElement {
         if(isFound){
             this.backToLastActivity();
         } else {
+
+            // if its empty hash, then it just back to root activity/homepage
+            if(hash === '' && lenBackStack < 1){
+                const homepageInfo = this._manifest.activities.get(this._manifest.homepage);
+                this.moveToNextActivity(homepageInfo, null);
+                return;
+            }
             // if its not back, then add it into stack...
             const parameters = urlParts.splice(2, urlParts.length);
             const getActivityInfo = this._manifest.activities.get(activity);

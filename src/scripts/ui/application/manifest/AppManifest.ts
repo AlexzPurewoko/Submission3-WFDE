@@ -4,7 +4,14 @@ interface ActivityInfo {
     readonly urlBase: string // string must contains the key of activity
 }
 
-const AppManifest = {
+interface AppManifest {
+    homepage: string; 
+    mode: string; 
+    testPage: string; 
+    activities: Map<string, ActivityInfo>; // private hasScrollLocked = false;
+}
+
+const appManifestImpl: AppManifest = {
     homepage: "HomeActivity",
     mode: "normal", // [ test | normal ]
     testPage: "none",
@@ -23,4 +30,4 @@ const AppManifest = {
     ])
 } 
 
-export {ActivityInfo, AppManifest};
+export {ActivityInfo, AppManifest, appManifestImpl};

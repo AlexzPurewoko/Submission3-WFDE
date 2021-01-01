@@ -1,28 +1,13 @@
 import BaseApi from "../../../../src/scripts/logic/api/modules/base/BaseApi"
 import {createMock} from "ts-auto-mock";
-import {method, On} from 'ts-auto-mock/extension';
-import { ApiAllResponse, IAllResponse } from "../../../../src/scripts/logic/api/allresponse/IAllResponse";
+import { IAllResponse } from "../../../../src/scripts/logic/api/allresponse/IAllResponse";
 import { ITestResponse } from "../../../../src/scripts/logic/api/data/test/ITestResponse";
 import ApiCallbacks from "../../../../src/scripts/logic/api/modules/base/ApiCallbacks";
-import { BaseLogicData } from "./data/BaseLogicData";
 
 import "jasmine-ajax";
 import {fetch as fetchPolyfill} from "whatwg-fetch";
-class BaseApiImpl extends BaseApi {
-    protected fetchPromise(): Promise<Response> {
-        return fetch("/data/api");
-    }
+import BaseApiImpl from "./helper/BaseApiImpl";
 
-    protected serveData(jsonData: Record<string, unknown>): Promise<ApiAllResponse> {
-        const jsonD : BaseLogicData = <BaseLogicData> <unknown> jsonData;
-        const ret: ITestResponse = {
-            error: false,
-            message: "",
-            data: jsonD
-        }
-        return Promise.resolve(ret);
-    }
-}
 
 describe('BaseApi class logic test', () => {
     let baseApi: BaseApi;

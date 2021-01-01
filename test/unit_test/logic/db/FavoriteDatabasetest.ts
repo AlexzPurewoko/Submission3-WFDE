@@ -1,5 +1,4 @@
 import { createMock } from "ts-auto-mock";
-import { On } from "ts-auto-mock/extension";
 import { DatabaseCb, DBCallbacks } from "../../../../src/scripts/logic/db/callbacks/DBCallbacks";
 import MainDatabase from "../../../../src/scripts/logic/db/MainDatabase";
 import MainObjStore from "../../../../src/scripts/logic/db/MainObjStore";
@@ -24,7 +23,6 @@ describe('database favorite integration test', () => {
 
     afterEach(async () => {
         mainDatabase.removeCallbacks(dbCallbacks);
-        // await mainDatabase.deleteThisDb();
     });
 
     

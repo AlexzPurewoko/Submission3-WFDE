@@ -1,13 +1,21 @@
 {
+    "ts-node": {
+        "files": true
+    },
     "compilerOptions": {
         "outDir": "./dist/",
         "noImplicitAny": true,
-        "module": "esnext",
-        "target": "es6",
+        "declaration": true,
+        "noUnusedLocals": false,
+        "module": "commonjs",
+        "target": "es2018",
+        "lib": ["ES2018", "DOM"],
         "jsx": "preserve",
         "allowJs": true,
         "sourceMap": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "types": ["codeceptjs", "jasmine"]
     },
     "compileOnSave": true,
 }
