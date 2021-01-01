@@ -1,3 +1,7 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro 
+ */
+
 import { ApiAllResponse } from "../../allresponse/IAllResponse";
 import { IPostReview } from "../../data/review/IPostReview";
 import { IResultReview } from "../../data/review/IResultReview";
@@ -5,6 +9,14 @@ import { UConfig } from "../../endpoint/BaseConfig";
 import { endpoint } from "../../endpoint/endpoint";
 import BaseApi from "../base/BaseApi";
 
+/**
+ * @class
+ * @description
+ * 
+ * Implements {@link BaseApi} class to post the review restaurant data to endpoint. 
+ * And return {@link IResultReview} data objects on property {@see IAllResponse.response}.
+ * 
+ */
 class PostReview extends BaseApi {
 
     private readonly _reviewData: IPostReview;

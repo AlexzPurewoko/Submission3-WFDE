@@ -1,3 +1,7 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro 
+ */
+
 import { ApiAllResponse } from "../../allresponse/IAllResponse";
 import { IRestaurantItem } from "../../data/lists/IRestaurantItem";
 import { IRestaurantResponse } from "../../data/lists/IRestaurantResponse";
@@ -5,6 +9,14 @@ import { endpoint } from "../../endpoint/endpoint";
 import { ImageSize } from "../../endpoint/ImageSize";
 import BaseApi from "../base/BaseApi";
 
+/**
+ * @class
+ * @description
+ * 
+ * Implements {@link BaseApi} class to get the list of restaurant from endpoint. 
+ * And return {@link IRestaurantResponse} data objects on property {@see IAllResponse.response}.
+ * 
+ */
 class GetAllRestaurants extends BaseApi {
 
     protected fetchPromise(): Promise<Response> {
