@@ -1,8 +1,19 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ * 
+ */
+
 import { IDBPDatabase, DBSchema, openDB } from "idb";
 import DatabaseHelper from "./helper/DatabaseHelper";
 import MainObjStore from "./MainObjStore";
 
-
+/**
+ * @class
+ * @description
+ * 
+ * The implementation and subclass for {@see DatabaseHelper}
+ * 
+ */
 class MainDatabase extends  DatabaseHelper {
 
     private _d : Promise<IDBPDatabase<DBSchema>> = null;
