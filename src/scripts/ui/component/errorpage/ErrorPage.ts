@@ -1,4 +1,7 @@
-// import "../../../../styles/n_sass/errorpage/error-page.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
 
 interface ErrorType {
     readonly message: string,

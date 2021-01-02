@@ -1,5 +1,9 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// import "../../../../styles/n_sass/header/home-header.sass";
 import NavItemCallback from "../../../utils/callbacks/NavItemCallback";
 
 class HomeActivityHeader extends HTMLElement {

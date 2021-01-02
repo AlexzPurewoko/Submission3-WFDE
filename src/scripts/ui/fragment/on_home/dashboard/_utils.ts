@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import ShimmerLoading from "../../../component/loading/ShimmerLoading";
 import CardItem from "../../../component/loading/typeloading/CardItem";
 

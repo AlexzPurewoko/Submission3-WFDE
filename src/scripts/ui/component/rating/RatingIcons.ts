@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 class RatingIcons extends HTMLElement {
     private _rate = 0.0;

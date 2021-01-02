@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/modal/modal.sass"
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { Util } from "../../../utils/util";
 
 class ModalElement extends HTMLElement {

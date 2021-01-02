@@ -1,16 +1,19 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { IRestaurantItem } from "../../../logic/api/data/lists/IRestaurantItem";
 import RestaurantItemClickCb from "../../../utils/callbacks/RestaurantItemClickCb";
 import RestaurantItem from "../restaurant_item/RestaurantItem";
-// import "../../../../styles/n_sass/restaurant_data/lists.sass";
 
 class RestaurantList extends HTMLElement {
 
     private _cb: RestaurantItemClickCb = null;
     private treshold = 500;
-    private pos: number = 0;
-    private totalData: number = 0;
-    private step: number = 6;
-    private lastScroll: number = 0;
+    private pos = 0;
+    private step = 6;
+    private lastScroll = 0;
     private data: IRestaurantItem[] = [];
 
 
@@ -21,7 +24,6 @@ class RestaurantList extends HTMLElement {
     render(data: IRestaurantItem[]): void {
         this.innerHTML = '';
         this.pos = 0;
-        this.totalData = data.length;
         this.data = data;
         this.renderPartial();
     }
@@ -43,7 +45,7 @@ class RestaurantList extends HTMLElement {
         }
     }
 
-    checkScroll() {
+    checkScroll(): void  {
         const scroll = window.pageYOffset;
         
         if ((scroll - this.lastScroll) > 0 && scroll >= this.offsetHeight - this.treshold) {

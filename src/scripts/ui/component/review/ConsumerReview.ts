@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/review/item-review-consumer.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { ICustomerReview } from "../../../logic/api/data/detail/ICustomerReview";
 
 class ConsumerReview extends HTMLElement {

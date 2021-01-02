@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/detail/detail-summary.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { IDetailRestaurantItem } from "../../../logic/api/data/detail/IDetailRestaurantItem";
 import { ISingleName } from "../../../logic/api/data/detail/ISingleName";
 import Badges from "../badge/Badges";

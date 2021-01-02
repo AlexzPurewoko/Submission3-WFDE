@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { githubSvg, linkedInSvg } from "./_utils";
 
 export const htmlLayout = `

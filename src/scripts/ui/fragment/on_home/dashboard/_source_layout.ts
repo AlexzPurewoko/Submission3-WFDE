@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 export const htmlLayout = `
     <section class='hero'>
         <hero-home></hero-home>

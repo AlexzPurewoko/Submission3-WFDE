@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/images/rounded-images.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { Util } from "../../../utils/util";
 
 export interface RImageAttrs {

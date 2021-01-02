@@ -1,10 +1,14 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/no-empty-function */
 import NavItemCallback from '../../../utils/callbacks/NavItemCallback';
 import HomeActivityFooter from '../../component/footer/HomeActivityFooter';
 import HomeActivityHeader from '../../component/header/HomeActivityHeader';
-import Fragment, { GeneralCb } from '../../fragment/base/Fragment';
+import { GeneralCb } from '../../fragment/base/Fragment';
 import BaseActivity from '../base/BaseActivity';
-// import "../../../../styles/n_sass/main/main-activity.sass";
 import { Util } from '../../../utils/util';
 import { htmlLayout } from './_source_layout';
 

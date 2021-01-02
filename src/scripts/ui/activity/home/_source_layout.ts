@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 export const htmlLayout = `
     <a href="#main_content" data-count="3" tabindex="0" id='skipcontent' class="skip-link">Skip to Content</a>
     <header>

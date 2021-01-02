@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/main/hero-main.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { Util } from "../../../utils/util";
 
 class HomeHero extends HTMLElement {

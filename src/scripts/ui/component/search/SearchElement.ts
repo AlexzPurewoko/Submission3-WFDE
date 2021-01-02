@@ -1,5 +1,9 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { Button, InputText } from "../../../utils/element_types";
-// import "../../../../styles/n_sass/search/search.sass";
 import SearchElementCb from "../../../utils/callbacks/SearchElementCb";
 class SearchElement extends HTMLElement {
 

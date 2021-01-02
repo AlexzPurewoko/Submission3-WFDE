@@ -1,7 +1,11 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { AddReviewCallback } from "../../../utils/callbacks/AddReviewCallback";
 import { Button, InputText } from "../../../utils/element_types";
-// import "../../../../styles/n_sass/review/post-review-consumer.sass";
-import * as autosize from "autosize";
+import autosize from "autosize";
 import { IPostReview } from "../../../logic/api/data/review/IPostReview";
 
 class AddReview extends HTMLElement {

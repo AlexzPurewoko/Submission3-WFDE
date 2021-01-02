@@ -1,6 +1,10 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { IRestaurantItem } from "../../../logic/api/data/lists/IRestaurantItem";
 import RestaurantItemClickCb from "../../../utils/callbacks/RestaurantItemClickCb";
-// import "../../../../styles/n_sass/restaurant_data/item.sass";
 import ModalElement from "../modal/ModalElement";
 class RestaurantItem extends HTMLElement {
 

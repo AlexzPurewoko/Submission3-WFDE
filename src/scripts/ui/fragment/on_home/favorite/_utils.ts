@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { IDetailRestaurantItem } from "../../../../logic/api/data/detail/IDetailRestaurantItem";
 import { IRestaurantItem } from "../../../../logic/api/data/lists/IRestaurantItem";
 import ShimmerLoading from "../../../component/loading/ShimmerLoading";

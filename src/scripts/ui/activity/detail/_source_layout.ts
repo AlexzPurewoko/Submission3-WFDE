@@ -1,4 +1,9 @@
-export const htmlLayout: string = `
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
+export const htmlLayout = `
     <header>
         <detail-header></detail-header>
     </header>

@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ShimmerLoading, { ShimmerViews } from "../ShimmerLoading";
 

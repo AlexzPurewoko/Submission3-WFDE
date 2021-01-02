@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/loading/shimmer-loading.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { Util } from "../../../utils/util";
 export interface ShimmerViews {
     getViews(container: ShimmerLoading) : HTMLElement

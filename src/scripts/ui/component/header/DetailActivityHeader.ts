@@ -1,5 +1,9 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-// import "../../../../styles/n_sass/header/detail-header.sass";
 import NavItemCallback from "../../../utils/callbacks/NavItemCallback";
 class DetailActivityHeader extends HTMLElement {
     private _cb: NavItemCallback = null;

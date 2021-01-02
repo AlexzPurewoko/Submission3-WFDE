@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 export const htmlLayout =  `
     <article tabindex="0" id='main_content2'>
         <h1>Your Favorites</h1>

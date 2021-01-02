@@ -1,10 +1,14 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { IDetailRestaurantItem } from "../../../../logic/api/data/detail/IDetailRestaurantItem";
 import MainObjStore from "../../../../logic/db/MainObjStore";
 import Fragment from "../../base/Fragment";
-// import "../../../../../styles/n_sass/fragments/favorites.sass";
 import * as utils from "./_utils";
 import SpacerLine from "../../../component/spacer/SpacerLine";
 import RestaurantList from "../../../component/restaurant_list/RestaurantList";

@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { ICustomerReview } from "../../../logic/api/data/detail/ICustomerReview";
 import { IDetailRestaurantItem } from "../../../logic/api/data/detail/IDetailRestaurantItem";

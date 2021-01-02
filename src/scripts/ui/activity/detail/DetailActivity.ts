@@ -1,3 +1,8 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DetailSummary from "../../component/detail/DetailSummary";
@@ -5,7 +10,6 @@ import DetailActivityHeader from "../../component/header/DetailActivityHeader";
 import RoundedImages from "../../component/image/RoundedImages";
 import BaseActivity from "../base/BaseActivity";
 import * as utils from "./_utils";
-// import "../../../../styles/n_sass/detail/detail-activity.sass"
 import ConsumerReview from "../../component/review/ConsumerReview";
 import { AddReviewCallback } from "../../../utils/callbacks/AddReviewCallback";
 import { IPostReview } from "../../../logic/api/data/review/IPostReview";

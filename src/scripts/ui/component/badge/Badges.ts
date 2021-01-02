@@ -1,5 +1,9 @@
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import { ISingleName } from "../../../logic/api/data/detail/ISingleName";
-// import "../../../../styles/n_sass/badge/badges.sass"
 
 export interface BadgeOptions {
     readonly color: string;

@@ -1,4 +1,8 @@
-// import "../../../../styles/n_sass/footer/home-footer.sass"
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
+
 import NavItemCallback from "../../../utils/callbacks/NavItemCallback";
 
 

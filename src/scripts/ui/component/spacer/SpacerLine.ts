@@ -1,4 +1,7 @@
-// import "../../../../styles/n_sass/spacer/spacer-line.sass";
+/**
+ * Copyright @2021 by Alexzander Purwoko Widiantoro
+ *  
+ */
 
 export interface SpacerAttrs {
     readonly color: string;
