@@ -31,7 +31,7 @@ const addFavRestoAndBack = async (I: CodeceptJS.I, positionIndex: number) : Prom
     return restoTitle;
 };
 
-xScenario('Check the Favorite Page is empty when adding no favorites', ({I}) => {
+Scenario('Check the Favorite Page is empty when adding no favorites', ({I}) => {
     I.see('Favorite', 'a[href="favorite"]');
     
     I.click('Favorite');
@@ -42,7 +42,7 @@ xScenario('Check the Favorite Page is empty when adding no favorites', ({I}) => 
     I.click('Home')
 });
 
-xScenario('Try to like one favorite and ensure its displayed on favorites page', async ({I}) => {
+Scenario('Try to like one favorite and ensure its displayed on favorites page', async ({I}) => {
 
     I.waitForVisible('restaurant-list');
     I.seeElement('item-restaurant');
@@ -61,7 +61,7 @@ xScenario('Try to like one favorite and ensure its displayed on favorites page',
 })
 
 let titleRestaurant: string[] = [];
-xScenario('Put exactly 3 item to Favorite and ensure that is added in database', async ({I}) => {
+Scenario('Put exactly 3 item to Favorite and ensure that is added in database', async ({I}) => {
     I.seeElement('item-restaurant');
 
     const size : number = <number> <unknown> await I.grabNumberOfVisibleElements('restaurant-list > item-restaurant');
@@ -90,7 +90,7 @@ xScenario('Put exactly 3 item to Favorite and ensure that is added in database',
     }
 });
 
-xScenario('Like one restaurant, and delete it. Ensure that is not displayed in Favorite page', async ({I}) => {
+Scenario('Like one restaurant, and delete it. Ensure that is not displayed in Favorite page', async ({I}) => {
     I.seeElement('item-restaurant');
 
     const restoTitle = await addFavRestoAndBack(I, 1);
@@ -115,7 +115,7 @@ xScenario('Like one restaurant, and delete it. Ensure that is not displayed in F
     I.see('No Favorite :(');
 });
 
-xScenario('Like exactly 3 restaurant, and delete 2 of them at first and last. Ensure that just one is displayed on favorite page', async ({I}) => {
+Scenario('Like exactly 3 restaurant, and delete 2 of them at first and last. Ensure that just one is displayed on favorite page', async ({I}) => {
     
     titleRestaurant = [];
     I.seeElement('item-restaurant');

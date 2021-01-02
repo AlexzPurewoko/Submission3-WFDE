@@ -9,15 +9,15 @@ Before(({I}) => {
 
 const testCheckHeroes = async (allHeros: string[], I: CodeceptJS.I) => {
     for(let i = 0; i < allHeros.length; i++){
+        I.say(`Current displayed image must be same as '${allHeros[i]}'`);
         I.seeElement(`#hero-image_${i+1}`);
         const currentImageSrc = await I.grabAttributeFrom(`#hero-image_${i+1}`, 'currentSrc');
-        I.say(`Current displayed image must be same as '${allHeros[i]}'`);
         expect(currentImageSrc).to.equal(allHeros[i]);
         I.wait(4);
     }
 }
 
-xScenario('All Hero Images must be displayed correctly in desktop size (w: +-1200px)', async ({I}) => {
+Scenario('All Hero Images must be displayed correctly in desktop size (w: +-1200px)', async ({I}) => {
     const allHeros = [
         'http://localhost:8080/images/heros/hero-image_1-extra.webp',
         'http://localhost:8080/images/heros/hero-image_2-extra.webp',
@@ -26,7 +26,7 @@ xScenario('All Hero Images must be displayed correctly in desktop size (w: +-120
     await testCheckHeroes(allHeros, I);
 });
 
-xScenario('All Hero Images must be displayed correctly in large tablet size (w: +-650px)', async ({I}) => {
+Scenario('All Hero Images must be displayed correctly in large tablet size (w: +-650px)', async ({I}) => {
     I.resizeWindow(650, 800);
     const allHeros = [
         'http://localhost:8080/images/heros/hero-image_1-large.webp',
@@ -36,7 +36,7 @@ xScenario('All Hero Images must be displayed correctly in large tablet size (w: 
     await testCheckHeroes(allHeros, I);
 });
 
-xScenario('All Hero Images must be displayed correctly in medium size (w: +-500px)', async ({I}) => {
+Scenario('All Hero Images must be displayed correctly in medium size (w: +-500px)', async ({I}) => {
     I.resizeWindow(500, 800);
     const allHeros = [
         'http://localhost:8080/images/heros/hero-image_1-medium.webp',
@@ -46,7 +46,7 @@ xScenario('All Hero Images must be displayed correctly in medium size (w: +-500p
     await testCheckHeroes(allHeros, I);
 });
 
-xScenario('All Hero Images must be displayed correctly in mobile size (w: +-400px)', async ({I}) => {
+Scenario('All Hero Images must be displayed correctly in mobile size (w: +-400px)', async ({I}) => {
     I.resizeWindow(400, 800);
     const allHeros = [
         'http://localhost:8080/images/heros/hero-image_1-small.webp',
@@ -86,7 +86,7 @@ Scenario('Hero Text must change correctly', ({I}) => {
 
 });
 
-xScenario('Search "Melting Pot" must display its element', ({I}) => {
+Scenario('Search "Melting Pot" must display its element', ({I}) => {
     I.say('Type \'Melting Pot\' to search field and click chevron right button');
     I.seeElement('dashboard-fragment input#search[type="text"]');
     I.see('chevron_right', 'dashboard-fragment button.submit > i.material-icons');
@@ -102,7 +102,7 @@ xScenario('Search "Melting Pot" must display its element', ({I}) => {
     I.seeNumberOfVisibleElements('restaurant-list item-restaurant', 1)
 });
 
-xScenario('Should lazy load element when scrolling', async ({I}) => {
+Scenario('Should lazy load element when scrolling', async ({I}) => {
 
     I.scrollPageToTop();
     I.refreshPage();
@@ -115,7 +115,7 @@ xScenario('Should lazy load element when scrolling', async ({I}) => {
     expect(incremental).to.equal(12);
 });
 
-xScenario('item restaurant must be displayed grid correctly', async({I}) => {
+Scenario('item restaurant must be displayed grid correctly', async({I}) => {
     // pause();
     const gridTest = [
         {

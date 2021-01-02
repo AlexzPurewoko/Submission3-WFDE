@@ -7,7 +7,7 @@ Before(({I}) => {
     I.click('About Us');
 });
 
-xScenario('Page must match as expected', async ({I}) => {
+Scenario('Page must match as expected', async ({I}) => {
     I.see('Alexzander Purwoko Widiantoro', 'about-fragment .content-description > h1');
     I.see('Technology Enthusiasts', 'about-fragment .content-description > h2');
 

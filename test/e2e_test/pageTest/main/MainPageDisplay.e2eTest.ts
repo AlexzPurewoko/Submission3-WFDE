@@ -5,7 +5,7 @@ Before(({I}) => {
     I.amOnPage('/#');
 })
 
-xScenario('Main activity page test header and footer on desktop screen', ({I}) => {
+Scenario('Main activity page test header and footer on desktop screen', ({I}) => {
     const bgCheck = (strElement: string, bgColorCss: string): void => {
         I.seeCssPropertiesOnElements(strElement, {'background-color': bgColorCss});
     }
@@ -62,7 +62,7 @@ xScenario('Main activity page test header and footer on desktop screen', ({I}) =
     I.seeElement('about-fragment');
 });
 
-xScenario('Main activity page test header and footer on mobile screen', ({I}) => {
+Scenario('Main activity page test header and footer on mobile screen', ({I}) => {
     I.resizeWindow(400, 600);
     const bgCheck = (strElement: string, bgColorCss: string): void => {
         I.seeCssPropertiesOnElements(strElement, {'background-color': bgColorCss});

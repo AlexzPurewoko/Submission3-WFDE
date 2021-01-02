@@ -17,7 +17,7 @@ Before(async ({I}) => {
     I.amOnPage('/#/DetailActivity/rqdv5juczeskfw1e867');
 });
 
-xScenario('Header and Footer must match as expected', ({I}) => {
+Scenario('Header and Footer must match as expected', ({I}) => {
     
     I.see('arrow_back', 'detail-header button.back-activity > i');
     I.see('favorite_border', 'detail-header button.favorite > i');
@@ -42,7 +42,7 @@ xScenario('Header and Footer must match as expected', ({I}) => {
     })
 });
 
-xScenario('Summary content must display correct information equal to API data', async({I}) => {
+Scenario('Summary content must display correct information equal to API data', async({I}) => {
 
     I.wait(2);
 
@@ -70,13 +70,13 @@ xScenario('Summary content must display correct information equal to API data', 
     I.seeTextEquals(`location_on${restaurant.address}, ${restaurant.city}`, 'detail-summary > div > p');
 });
 
-xScenario('Section description must show correct information', ({I}) => {
+Scenario('Section description must show correct information', ({I}) => {
     I.seeTextEquals('Description', '.description h1.title-section');
     I.seeElement('.description > .titles spacer-line');
     I.seeTextEquals(restaurant.description, '.description > .content > p');
 });
 
-xScenario('Section menu must display about food and Drinks', ({I}) => {
+Scenario('Section menu must display about food and Drinks', ({I}) => {
     I.say('Check on section Food\'s menu');
     I.seeTextEquals('Food Menu\'s', '.menus > .food-menu > h1.title-section');
     I.seeElement('.menus > .food-menu spacer-line');
@@ -102,7 +102,7 @@ xScenario('Section menu must display about food and Drinks', ({I}) => {
     }
 });
 
-xScenario('Section All Reviews must display all saved user reviews', ({I}) => {
+Scenario('Section All Reviews must display all saved user reviews', ({I}) => {
 
     I.say('Check \'All Review\' Text');
     I.seeTextEquals('All Reviews', '.reviews > .list-review > h1.title-section');
@@ -126,7 +126,7 @@ xScenario('Section All Reviews must display all saved user reviews', ({I}) => {
     }
 });
 
-xScenario('Ensure that section Add Review Here is displayed correctly', ({I}) => {
+Scenario('Ensure that section Add Review Here is displayed correctly', ({I}) => {
     I.wait(2);
     I.scrollPageToBottom();
     I.say('Check \'Add Review Here\' Text');
@@ -147,7 +147,7 @@ xScenario('Ensure that section Add Review Here is displayed correctly', ({I}) =>
 
 });
 
-xScenario('Test Add Review', ({I}) => {
+Scenario('Test Add Review', ({I}) => {
 
     let userName: string;
     let userMessage: string;
