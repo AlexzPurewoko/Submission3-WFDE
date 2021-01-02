@@ -30,7 +30,7 @@ describe('Base Fragment Lifecycle Test', ()=> {
         spyOn(testFragment, 'onSaveState');
         spyOn(testFragment, 'onDestroy');
         spyOn(testFragment, 'onReceiveMessage');
-        spyOn(testFragment, 'initialize');
+        spyOn(testFragment, 'initialize').and.callThrough();
         spyOn(testFragment, 'setAttribute');
 
 
@@ -147,6 +147,14 @@ describe('Base Fragment Lifecycle Test', ()=> {
             fgAdapter.sendMessage('key', GeneralCb.MESSAGE_DATA, {m: "hello world"});
     
             expect(testFragment.onReceiveMessage).toHaveBeenCalledWith(GeneralCb.MESSAGE_DATA, {m: "hello world"});
+        });
+
+        it('should can send message to activity or parent fragment by mocking FgCallbacks', () => {
+            fgAdapter.attachFragment('key', fgManifest[0], htmlLayout);
+            testFragment.send(GeneralCb.MESSAGE_OTHERS, {message: "hello world!"});
+
+            expect(fgCallback.onNotify).toHaveBeenCalledOnceWith('key', GeneralCb.MESSAGE_OTHERS, {message: "hello world!"})
+
         });
     })
 
