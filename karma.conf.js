@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const webpackTest = require('./webpack.test');
 // Karma configuration
 // Generated on Fri Jul 03 2020 20:15:52 GMT+0700 (Western Indonesia Time)
@@ -39,8 +41,6 @@ module.exports = function (config) {
     // reporters: ['spec'],
     reporters: ['progress'],
 
-    // browsers: ["Chrome"],
-
     browsers: ['ChromeDebugging'],
 
     customLaunchers: {
@@ -63,10 +63,6 @@ module.exports = function (config) {
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    // browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

@@ -10,7 +10,7 @@
 const regexDisplayNone = /(display\s*:\s*none\s*(;)?)/;
 
 // regex for matching opacity CSS property
-const regexOpacity = /opacity\s*:\s*([0-9]+[,.]?[0-9]*([\/][0-9]+[,.]?[0-9]*)*)\s*;/;
+const regexOpacity = /opacity\s*:\s*([0-9]+[,.]?[0-9]*([/][0-9]+[,.]?[0-9]*)*)\s*;/;
 
 /**
  * Provides a helper method for being used on another class
@@ -90,7 +90,8 @@ export const Util = {
         if (!Object.keys) Object.keys = function (o: any) {
             if (o !== Object(o))
                 throw new TypeError('Object.keys called on a non-object');
-            let k = [], p;
+            const k = [];
+            let p;
             for (p in o) if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
             return k;
         }
@@ -238,7 +239,7 @@ export const Util = {
         let display = window.getComputedStyle(target).display;
         if (display === 'none') display = 'block';
         target.style.display = display;
-        let height = target.offsetHeight;
+        const height = target.offsetHeight;
         target.style.overflow = 'hidden';
         target.style.height = "0";
         target.style.paddingTop = "0";

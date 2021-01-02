@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
 const webpackPwaManifest = require("webpack-pwa-manifest");
 const workboxPlugin = require("workbox-webpack-plugin");
 
@@ -76,7 +75,6 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
       favicon: "./src/public/images/icons/restaurant-icon.svg",
-      // chunks: ['main', 'actSw', 'mainStyle'],
       minify: {
         html5: true,
         collapseWhitespace: true,

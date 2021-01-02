@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 require('ts-node/register');
 const { setHeadlessWhen } = require('@codeceptjs/configure');
 // turn on headless mode when running with HEADLESS=true environment variable
