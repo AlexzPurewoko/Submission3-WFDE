@@ -38,7 +38,6 @@
     "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.6.0",
     "eslint": "^7.16.0",
-    "express": "^4.17.1",
     "fetch-mock": "^9.11.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.3.0",
@@ -81,6 +80,7 @@
     "@types/autosize": "^3.0.7",
     "autosize": "^4.0.2",
     "idb": "^5.0.7",
+    "express": "^4.17.1",
     "lazysizes": "^5.3.0-beta1",
     "regenerator-runtime": "^0.13.5"
   }
