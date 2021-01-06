@@ -5,7 +5,7 @@ Please open in Chrome
 ## NPM Runner 
 
 *   npm run **start-dev** : Start a development server, available to outer hosts.
-*   npm run **dev-debug** : Similar to **start-dev, **but with VSCode Debugging
+*   npm run **dev-debug** : Similar to **start-dev,** but with VSCode Debugging
 *   npm run **build** : Build to mode **production.** Served in **dist** folder.
 *   npm run **start** : Start a Node Server.
 *   npm run **lint** : Lint Code Validation.
